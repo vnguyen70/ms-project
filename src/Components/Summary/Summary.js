@@ -17,10 +17,10 @@ class Summary extends Component {
     this.retryMonth = this.retryMonth.bind(this);
   }
     
-  retryMonth() {
-    alert("I'm here");
-    this.props.retryMonth();
+  retryMonth(month) {
+    this.props.retryMonth(month);
   }
+    
   render() {
     return (
       <div className="Summary">
@@ -35,7 +35,7 @@ class Summary extends Component {
           <p className="Summary-Complete">Complete!</p>
           <p className="Summary-Text">{this.props.summary}</p>
           <div>
-            <button className="Summary-Button" id="Retry" onClick={() => this.retryMonth()}>Retry</button> 
+            <button className="Summary-Button" id="Retry" onClick={() => this.retryMonth(this.props.month)}>Retry</button> 
             <button className="Summary-Button" id="Continue">Continue</button>
           </div>
         </div>

@@ -22,8 +22,6 @@ var responseID1 = 'u1a';
 var responseID2 = 'u1b';
 var responseID3 = 'u1c';
 
-
-
 class MainDialogue extends Component {
   constructor() {
       super()
@@ -678,6 +676,11 @@ class MainDialogue extends Component {
             hideSummary0: true,
           })
           exchange = 1; 
+          month = 0; 
+
+          responseID1 = 'u1a';
+          responseID2 = 'u1b';
+          responseID3 = 'u1c';
       }
   }
     
@@ -695,34 +698,21 @@ class MainDialogue extends Component {
                   {/* ***********************************  MONTH 0 ************************************* */}
                   {/* ********************************************************************************** */}
                   <SamDialogue dialogue="Hey Quinn!"/>
-                    
-                  <div>
-                  {!this.state.hideExchange1 && this.state.exchange1 === 'u1a' && <UserDialogue dialogue={this.getUserDialogue('u1a')}/>}
-                  {!this.state.hideExchange1 && this.state.exchange1 === 'u1b' && <UserDialogue dialogue={this.getUserDialogue('u1b')}/>}
-                  {!this.state.hideExchange1 && this.state.exchange1 === 'u1c' && <UserDialogue dialogue={this.getUserDialogue('u1c')}/>}
-                  </div>
+
+                  {!this.state.hideExchange1 && <UserDialogue dialogue={this.getUserDialogue(this.state.exchange1)}/>}
         
                   {!this.state.hideExchange1 && this.state.exchange1 === 'u1a' && <SamDialogue dialogue={this.getSamDialogue('s1a')}/>} 
                   {!this.state.hideExchange1 && this.state.exchange1 === 'u1b' && <SamDialogue dialogue={this.getSamDialogue('s1b')}/>} 
                   {!this.state.hideExchange1 && this.state.exchange1 === 'u1c' && <SamDialogue dialogue={this.getSamDialogue('s1c')}/>} 
         
-                  {!this.state.hideExchange2 && this.state.exchange2 === 'u2a' && <UserDialogue dialogue={this.getUserDialogue('u2a')}/>}
-                  {!this.state.hideExchange2 && this.state.exchange2 === 'u2b' && <UserDialogue dialogue={this.getUserDialogue('u2b')}/>}
-                  {!this.state.hideExchange2 && this.state.exchange2 === 'u2c' && <UserDialogue dialogue={this.getUserDialogue('u2c')}/>}
+                  {!this.state.hideExchange2 && <UserDialogue dialogue={this.getUserDialogue(this.state.exchange2)}/>}
                    
                   {!this.state.hideExchange2 && this.state.exchange2 === 'u2a' && <SamDialogue dialogue={this.getSamDialogue('s2a')}/>} 
                   {!this.state.hideExchange2 && this.state.exchange2 === 'u2b' && <SamDialogue dialogue={this.getSamDialogue('s2b')}/>} 
                   {!this.state.hideExchange2 && this.state.exchange2 === 'u2b' && <SamDialogue dialogue={this.getSamDialogue('s2b2')}/>} 
                   {!this.state.hideExchange2 && this.state.exchange2 === 'u2c' && <SamDialogue dialogue={this.getSamDialogue('s2c')}/>} 
                    
-                  {!this.state.hideExchange3 && this.state.exchange3 === 'u3a' && <UserDialogue dialogue={this.getUserDialogue('u3a')}/>}
-                  {!this.state.hideExchange3 && this.state.exchange3 === 'u3b' && <UserDialogue dialogue={this.getUserDialogue('u3b')}/>}
-                  {!this.state.hideExchange3 && this.state.exchange3 === 'u3c' && <UserDialogue dialogue={this.getUserDialogue('u3c')}/>}
-                  {!this.state.hideExchange3 && this.state.exchange3 === 'u3d' && <UserDialogue dialogue={this.getUserDialogue('u3d')}/>}
-                  {!this.state.hideExchange3 && this.state.exchange3 === 'u3e' && <UserDialogue dialogue={this.getUserDialogue('u3e')}/>}
-                  {!this.state.hideExchange3 && this.state.exchange3 === 'u3f' && <UserDialogue dialogue={this.getUserDialogue('u3f')}/>}
-                  {!this.state.hideExchange3 && this.state.exchange3 === 'u3g' && <UserDialogue dialogue={this.getUserDialogue('u3g')}/>}
-                  {!this.state.hideExchange3 && this.state.exchange3 === 'u3h' && <UserDialogue dialogue={this.getUserDialogue('u3h')}/>}
+                  {!this.state.hideExchange3 && <UserDialogue dialogue={this.getUserDialogue(this.state.exchange3)}/>}
                    
                   {!this.state.hideExchange3 && this.state.exchange3 === 'u3a' && <SamDialogue dialogue={this.getSamDialogue('s3a')}/>} 
                   {!this.state.hideExchange3 && this.state.exchange3 === 'u3b' && <SamDialogue dialogue={this.getSamDialogue('s3b')}/>} 
@@ -735,20 +725,7 @@ class MainDialogue extends Component {
                   {!this.state.hideExchange3 && this.state.exchange3 === 'u3h' && <SamDialogue dialogue={this.getSamDialogue('s3h')}/>} 
                   
                   
-                  {!this.state.hideExchange4 && this.state.exchange4 === 'u4a' && <UserDialogue dialogue={this.getUserDialogue('u4a')}/>}
-                  {!this.state.hideExchange4 && this.state.exchange4 === 'u4b' && <UserDialogue dialogue={this.getUserDialogue('u4b')}/>}
-                  {!this.state.hideExchange4 && this.state.exchange4 === 'u4c' && <UserDialogue dialogue={this.getUserDialogue('u4c')}/>}
-                  {!this.state.hideExchange4 && this.state.exchange4 === 'u4c2' && <UserDialogue dialogue={this.getUserDialogue('u4c2')}/>}
-                  {!this.state.hideExchange4 && this.state.exchange4 === 'u4d' && <UserDialogue dialogue={this.getUserDialogue('u4d')}/>}
-                  {!this.state.hideExchange4 && this.state.exchange4 === 'u4d2' && <UserDialogue dialogue={this.getUserDialogue('u4d2')}/>}
-                  {!this.state.hideExchange4 && this.state.exchange4 === 'u4e' && <UserDialogue dialogue={this.getUserDialogue('u4e')}/>}
-                  {!this.state.hideExchange4 && this.state.exchange4 === 'u4f' && <UserDialogue dialogue={this.getUserDialogue('u4f')}/>}
-                  {!this.state.hideExchange4 && this.state.exchange4 === 'u4g' && <UserDialogue dialogue={this.getUserDialogue('u4g')}/>}
-                  {!this.state.hideExchange4 && this.state.exchange4 === 'u4h' && <UserDialogue dialogue={this.getUserDialogue('u4h')}/>}
-                  {!this.state.hideExchange4 && this.state.exchange4 === 'u4i' && <UserDialogue dialogue={this.getUserDialogue('u4i')}/>}
-                  {!this.state.hideExchange4 && this.state.exchange4 === 'u4j' && <UserDialogue dialogue={this.getUserDialogue('u4j')}/>}
-                  {!this.state.hideExchange4 && this.state.exchange4 === 'u4k' && <UserDialogue dialogue={this.getUserDialogue('u4k')}/>}   
-                  {!this.state.hideExchange4 && this.state.exchange4 === 'u4l' && <UserDialogue dialogue={this.getUserDialogue('u4l')}/>}
+                  {!this.state.hideExchange4 && <UserDialogue dialogue={this.getUserDialogue(this.state.exchange4)}/>}
                    
                   {!this.state.hideExchange4 && this.state.exchange4 === 'u4a' && <SamDialogue dialogue={this.getSamDialogue('s4a')}/>}
                   {!this.state.hideExchange4 && this.state.exchange4 === 'u4b' && <SamDialogue dialogue={this.getSamDialogue('s4b')}/>}
@@ -765,15 +742,13 @@ class MainDialogue extends Component {
                   {!this.state.hideExchange4 && this.state.exchange4 === 'u4l' && <SamDialogue dialogue={this.getSamDialogue('s4k')}/>}
                   {!this.state.hideExchange4 && <SamDialogue dialogue={this.getSamDialogue('s4all')}/>}
                    
-                  {!this.state.hideExchange5 && this.state.exchange5 === 'u5a' && <UserDialogue dialogue={this.getUserDialogue('u5a')}/>}
-                  {!this.state.hideExchange5 && this.state.exchange5 === 'u5b' && <UserDialogue dialogue={this.getUserDialogue('u5b')}/>}
-                  {!this.state.hideExchange5 && this.state.exchange5 === 'u5c' && <UserDialogue dialogue={this.getUserDialogue('u5c')}/>}
+                  {!this.state.hideExchange5 && <UserDialogue dialogue={this.getUserDialogue(this.state.exchange5)}/>}
                    
                   {!this.state.hideExchange5 && this.state.exchange5 === 'u5a' && <SamDialogue dialogue={this.getSamDialogue('s5a')}/>} 
                   {!this.state.hideExchange5 && this.state.exchange5 === 'u5b' && <SamDialogue dialogue={this.getSamDialogue('s5b')}/>} 
                   {!this.state.hideExchange5 && this.state.exchange5 === 'u5c' && <SamDialogue dialogue={this.getSamDialogue('s5c')}/>} 
                    
-                  {!this.state.hideExchange6 && this.state.exchange6 === 'u6a' && <UserDialogue dialogue={this.getUserDialogue('u6a')}/>}
+                  {!this.state.hideExchange6 && <UserDialogue dialogue={this.getUserDialogue(this.state.exchange6)}/>}
                    
                   {!this.state.hideExchange6 && this.state.exchange6 === 'u6a' && <SamDialogue dialogue={this.getSamDialogue('s6a')}/>}
                   {!this.state.hideExchange6 && this.state.exchange6 === 'u6a' && <SamDialogue dialogue={this.getSamDialogue('s6b')}/>}
