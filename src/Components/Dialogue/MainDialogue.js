@@ -364,8 +364,9 @@ class MainDialogue extends Component {
   continueMonth() {
     if (month === 0) {
       this.setState({
-        hideSummary0: true,
+        hideSummary0: true
       });
+    }
   }
 
   render() {
