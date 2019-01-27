@@ -339,7 +339,7 @@ class MainDialogue extends Component {
     this.changeDialogueState(responseID3);
   }
 
-  retryMonth = month => {
+  retryMonth(month) {
     if (month === 0) {
       this.setState({
         hideExchange1: true,
@@ -359,7 +359,14 @@ class MainDialogue extends Component {
       responseID2 = "u1b";
       responseID3 = "u1c";
     }
-  };
+  }
+
+  continueMonth() {
+    if (month === 0) {
+      this.setState({
+        hideSummary0: true,
+      });
+  }
 
   render() {
     return (
