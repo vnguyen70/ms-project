@@ -8,18 +8,298 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  /* background-color: #FDD8D4; */
+  background-color: #DCDCDC;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
 .App-link {
   color: #61dafb;
+}
+
+/* ***************** Dialogue Interface *************** */
+
+.Dialogue-main {
+  min-height: 60vh;
+  margin-top: -4vh;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+/* ******** Dialogue Box ******* */
+.Box {
+  background-color: #FFFFFF;
+  height: 62.5vh;
+  min-width: 130vh;
+  margin-top: 5vh;
+  padding-top: 2.5vh;
+  padding-bottom: 5vh;
+  border-radius: 0px 25px 25px 0px;
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.Box-content {
+  margin-top: 1.5vh;
+  margin-bottom: 2vh;
+  overflow-y: scroll;    
+}
+
+.Sam-div {  
+  display: flex;
+  flex-direction: column;    
+  align-items: flex-start;
+  justify-content: flex-start;    
+}
+
+.Sam-dialogue {
+  /* background-color: #FFAAAA; */
+  background-color: #DCDCDC;
+  max-width: 70vh;
+  text-align: left;
+  margin-left: 5vh;
+  margin-top: 0vh;
+  padding: 2.5vh;
+  border-radius: 1.5vh;
+  font-size: 2vmin;     
+  color: #OEOEOE;
+}
+
+.User-div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;    
+}
+
+.User-dialogue {
+  /* background-color: #AFDDE9; */
+  background-color: #BEBEBE;
+  max-width: 70vh;
+  text-align: left;
+  margin-right: 5vh;
+  margin-top: 0vh;
+  padding: 2.5vh;
+  border-radius: 1.5vh;
+  font-size: 2vmin;     
+  color: #OEOEOE;
+}
+
+
+/* ***************************** */
+
+/* ******* Response Bubble ***** */
+.Response-button-row {
+/*  background-color: antiquewhite;*/
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: flex-end;    
+}
+
+.Response-bubble {
+  height: 14vh;   
+  position: relative; 
+  left: 18vh;
+  bottom: 8vh;
+}
+
+.Response-text-div {
+  position: relative; 
+  left: 5vh;
+  bottom: 9.5vh;
+  min-width: 12vh;
+  font-size: 2vmin;   
+  color: white;
+}
+
+.Response-row {
+  
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;    
+  margin-top: -10vh;
+}
+
+.Response-button {
+  background-color: white;
+  width: 45vh;
+  height: 10vh;
+  margin-right: 2.5vh;
+  text-align: center;
+  outline: none;
+  /* border: 0.5vh solid #AFDDE9; */
+  border: 0.5vh solid #BEBEBE;
+  border-radius: 2vh;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+}
+
+.Response-button:hover {
+  /* background-color: #AFDDE9; */
+  background-color: #BEBEBE;
+}
+
+.Response-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+/* ***************************** */
+
+/* ********** Side Bar ********* */
+.Side-bar-container {
+  margin-top: 5vh;
+}
+
+.Side-bar {
+  min-height: 34.5vh;
+  min-width: 20vh;  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;    
+  border-radius: 25px 0px 0px 25px;
+} 
+
+#Hearts-bar {
+  /* background-color: #FFAAAA; */  
+  background-color: #C8C8C8;  
+  margin-bottom: 1vh;
+
+}
+
+#Stars-bar {
+  /* background-color: #FFEEAA; */
+  background-color: #C8C8C8;   
+}
+
+.Side-icon {
+  margin-top: 2vh;
+  margin-bottom: 2vh;
+  margin-left: 0.5vh;
+}
+
+#Heart-icon {
+  height: 6vh;
+}
+
+#Star-icon {
+  height: 6.75vh;
+}
+/* ***************************** */
+
+.Summary {
+  position: fixed; /* Sit on top of the page content */
+  top: 0; 
+  left: 0;
+  right: 0;
+  bottom: 0;
+    
+  display: flex; /* Hidden by default */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+    
+  min-width: 100vh; /* Full width (cover the whole page) */
+  min-height: 100vh; /* Full height (cover the whole page) */
+  
+  background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+  /* cursor: pointer; /* Add a pointer on hover */
+}
+
+.Summary-Overlay-Box {
+  display: flex; /* Hidden by default */
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+    
+  background-color: #FFFFFF;
+  height: 70vh;
+  max-width: 120vh;
+  padding-top: 2.5vh;
+  padding-bottom: 5vh;
+  padding-left: 5vh;
+  padding-right: 5vh;
+  margin-top: -1vh;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+}
+
+.Summary-Icon {
+  max-width: 12vh;
+  margin-top: 2vh;
+}
+
+#Summary-L {
+  margin-right: 3vh;    
+}
+
+#Summary-M {
+  margin-bottom: 4vh;
+}
+
+#Summary-R {
+  margin-left: 3vh;
+}
+
+.Summary-Month {
+  font-size: 2.5vh;
+  font-weight: 600;
+}
+
+.Summary-Num {
+  margin-top: -3vh;
+  margin-bottom: -3vh;
+  font-size: 9vh;
+  font-weight: 600;
+}
+
+.Summary-Complete {
+  font-size: 3.5vh;
+  font-weight: 600;    
+}
+
+.Summary-Text {
+  margin-left: 10vh;
+  margin-right: 10vh;
+}
+
+.Summary-Button {
+  background-color: white;
+  width: 25vh;
+  height: 6vh;
+  margin-left: 1.5vh;
+  margin-right: 1.5vh;
+  margin-top: 5vh;
+  
+  text-align: center;
+  font-size: 2vh;
+  outline: none;
+  /* border: 0.5vh solid #AFDDE9; */
+  border: 0.3vh solid #BEBEBE;
+  border-radius: 1.25vh;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;    
+}
+
+.Summary-Button:hover {
+  /* background-color: #AFDDE9; */
+  background-color: #BEBEBE;
+}
+
+.Summary-Button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 @keyframes App-logo-spin {
