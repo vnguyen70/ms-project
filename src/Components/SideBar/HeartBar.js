@@ -5,15 +5,29 @@ import heartOff from "../../Assets/heart-off.png";
 
 import "../../App.css";
 
-var topIcon;
-var midIcon;
-var botIcon;
+var topIcon = heartOn;
+var midIcon = heartOn;
+var botIcon = heartOn;
 
 class HeartBar extends Component {
   getIcons() {
-    topIcon = heartOn;
-    midIcon = heartOn;
-    botIcon = heartOff;
+    if (this.props.heartCount === 0) {
+      topIcon = heartOff;
+      midIcon = heartOff;
+      botIcon = heartOff;
+    } else if (this.props.heartCount === 1) {
+      topIcon = heartOn;
+      midIcon = heartOff;
+      botIcon = heartOff;
+    } else if (this.props.heartCount === 2) {
+      topIcon = heartOn;
+      midIcon = heartOn;
+      botIcon = heartOff;
+    } else if (this.props.heartCount === 3) {
+      topIcon = heartOn;
+      midIcon = heartOn;
+      botIcon = heartOn;
+    }
   }
 
   render() {

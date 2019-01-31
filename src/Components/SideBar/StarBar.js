@@ -5,15 +5,29 @@ import starOff from "../../Assets/star-off.png";
 
 import "../../App.css";
 
-var topIcon;
-var midIcon;
-var botIcon;
+var topIcon = starOff;
+var midIcon = starOff;
+var botIcon = starOn;
 
 class StarBar extends Component {
   getIcons() {
-    topIcon = starOn;
-    midIcon = starOn;
-    botIcon = starOff;
+    if (this.props.starCount === 0) {
+      topIcon = starOff;
+      midIcon = starOff;
+      botIcon = starOff;
+    } else if (this.props.starCount === 1) {
+      topIcon = starOn;
+      midIcon = starOff;
+      botIcon = starOff;
+    } else if (this.props.starCount === 2) {
+      topIcon = starOn;
+      midIcon = starOn;
+      botIcon = starOff;
+    } else if (this.props.starCount === 3) {
+      topIcon = starOn;
+      midIcon = starOn;
+      botIcon = starOn;
+    }
   }
 
   render() {

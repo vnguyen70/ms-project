@@ -18,7 +18,7 @@ import HeartBar from "../SideBar/HeartBar";
 import StarBar from "../SideBar/StarBar";
 
 var month = 0;
-var starCount = 3;
+var starCount = 1;
 var heartCount = 3;
 var exchange = 1;
 
