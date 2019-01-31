@@ -1,6 +1,8 @@
 export const userDialogue = [
   { id: " ", text: " " },
   { id: "gn", text: "Good night." },
+  { id: ":)", text: ":)" },
+  { id: ":(", text: ":(" },
 
   /* ********** Month 0 *************/
 
@@ -146,7 +148,7 @@ export const userDialogue = [
   {
     id: "u13b",
     text:
-      "You could always do singing on the side or perform at local places for fun?"
+      "You could always do singing on the side or perform at local places for fun? Financial stability is more important."
   },
   {
     id: "u13c",
@@ -186,18 +188,6 @@ export const userDialogue = [
       "Sam, you can't just lay there and do nothing. That won't help anyone. Go do your work."
   },
 
-  {
-    id: "u17aD",
-    text:
-      "Wanna meet up at a coffee shop somewhere? I have some work to do too. We can work together."
-  },
-  { id: "u17bD", text: "Go Sam, go! I know you can do it!!" },
-  { id: "u17cD", text: "No maybes. Promise me you will." },
-  { id: "u17dD", text: "That's up to you, you're an adult now." },
-  { id: "u17eD", text: "That's right." },
-  { id: "u17fD", text: "K lol.." },
-  { id: "u17gD", text: "Fine lol, suit yourself." },
-
   /* ********** Month 12 - New Job Arc *************/
   { id: "u14aN", text: "Hey. What's up?" },
   { id: "u14bN", text: "Sammmmmmmmmmmmmm." },
@@ -229,7 +219,6 @@ export const userDialogue = [
       "Sam, you can't just do nothing. You want a better job, right? Go do your work."
   },
 
-  /* ********** Month 12 - New Job Arc *************/
   {
     id: "u17a",
     text:
@@ -270,6 +259,8 @@ export const userDialogue = [
 
   { id: "u21a", text: "I'm sure you can find them on your own." },
   { id: "u21b", text: "I'd love to." },
+  { id: "u21c", text: ":)" },
+  { id: "u21d", text: "Alright. Thanks, and I'm sorry." },
 
   /* ********** Month 24 *************/
 

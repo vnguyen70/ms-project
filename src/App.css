@@ -8,9 +8,9 @@
 }
 
 .App-header {
+  min-height: 100vh;
   /* background-color: #FDD8D4; */
   background-color: #DCDCDC;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -20,6 +20,18 @@
 .App-link {
   color: #61dafb;
 }
+
+.Date-bar {
+  border-top: 0.25vh solid #D3D3D3;
+  border-bottom: 0.25vh solid #D3D3D3;
+  margin: 5vh;
+  margin-bottom: 3vh;
+  padding: -1vh;
+}
+
+#Month0 {
+  margin-top: 0vh;
+} 
 
 /* ***************** Dialogue Interface *************** */
 
@@ -223,8 +235,9 @@
   justify-content: flex-start;
     
   background-color: #FFFFFF;
-  height: 70vh;
-  max-width: 120vh;
+  min-height: 70vh;
+  min-width: 120vh;
+  max-width: 140vh;
   padding-top: 2.5vh;
   padding-bottom: 5vh;
   padding-left: 5vh;
@@ -280,7 +293,8 @@
   height: 6vh;
   margin-left: 1.5vh;
   margin-right: 1.5vh;
-  margin-top: 5vh;
+  margin-top: 4vh;
+  margin-bottom: 2vh;
   
   text-align: center;
   font-size: 2vh;

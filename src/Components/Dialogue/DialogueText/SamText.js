@@ -156,7 +156,11 @@ export const samDialogue = [
     text: "Idunno... I wouldn't want to bother you with it..."
   },
   { id: "s9b", text: "Yeah... haha... " },
-  { id: "s9c", text: "Welp, hope you feel better!!" },
+  {
+    id: "s9c",
+    text:
+      "I guess... yeah, iunno. It's alright, don't worry about it. I'll talk to you some other time. Cya."
+  },
 
   {
     id: "s10a",
@@ -230,7 +234,7 @@ export const samDialogue = [
 
   {
     id: "s13a",
-    text: "Maybe I'll go and quit tomorrow!! Show him who's boss. >:D"
+    text: "Maybe I'll go and quit tomorrow!! Show my boss who's boss. >:D"
   },
   {
     id: "s13a2",
@@ -243,26 +247,27 @@ export const samDialogue = [
       "Yeah I guess... It won't be the same as performing full-time but at least it'll help out my performance anxiety. Maybe then, I'll quit my stupid job and make it with the big boys and girls lol."
   },
   { id: "s13b2", text: "Thanks for the advice, Quinn. I appreciate it." },
-  { id: "s13c", text: "LOLLL yeah I wish I had the guts to do that. " },
   {
-    id: "s13c2",
-    text:
-      "While I'm working up the courage for that, I'll at least try to apply to some other graphic design jobs. "
-  },
-  {
-    id: "s13c3",
-    text: "Thanks for your encouragement, Quinn. :) I really appreciate it. "
-  },
-  {
-    id: "s13d",
+    id: "s13c",
     text:
       "Oof yeah. I was gonna play some video games, but I'll do this first. Maybe I'll aim for like 5 applications a night...? Ugh that's gonna be a pain. "
   },
   {
-    id: "s13d2",
+    id: "s13c2",
     text:
       "Thanks for your encouragement though, Quinn. :) I really appreciate it."
   },
+  { id: "s13d", text: "LOLLL yeah I wish I had the guts to do that. " },
+  {
+    id: "s13d2",
+    text:
+      "While I'm working up the courage for that, I'll at least try to apply to some other graphic design jobs. "
+  },
+  {
+    id: "s13d3",
+    text: "Thanks for your encouragement, Quinn. :) I really appreciate it. "
+  },
+
   {
     id: "s13all",
     text:
@@ -363,7 +368,7 @@ export const samDialogue = [
   },
   {
     id: "s17a2",
-    text: "Anyway, I'll get changed and meet you at Starbucks I guess? See ya!"
+    text: "Let's do that tomorrow then. See ya!"
   },
   { id: "s17b", text: "Yup...! I can do it... " },
   { id: "s17c", text: "Sigh... Okay. I promise... >< " },

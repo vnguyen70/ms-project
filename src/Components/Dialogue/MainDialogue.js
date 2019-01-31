@@ -18,9 +18,14 @@ import HeartBar from "../SideBar/HeartBar";
 import StarBar from "../SideBar/StarBar";
 
 var month = 0;
+var starCount = 3;
+var heartCount = 3;
 var exchange = 1;
 
 var personality = 0;
+var askedSuicide = false;
+var followDream = false;
+var goodEnding = false;
 
 var debug = "hi";
 
@@ -49,6 +54,13 @@ class MainDialogue extends Component {
       hideExchange14: true,
       hideExchange15: true,
       hideExchange16: true,
+      hideExchange17: true,
+      hideExchange18: true,
+      hideExchange19: true,
+      hideExchange20: true,
+      hideExchange21: true,
+      hideExchange22: true,
+      hideExchange23: true,
 
       exchange1: " ",
       exchange2: " ",
@@ -66,6 +78,13 @@ class MainDialogue extends Component {
       exchange14: " ",
       exchange15: " ",
       exchange16: " ",
+      exchange17: " ",
+      exchange18: " ",
+      exchange19: " ",
+      exchange20: " ",
+      exchange21: " ",
+      exchange22: " ",
+      exchange23: " ",
 
       hideSummary0: true,
       hideSummary6: true,
@@ -96,6 +115,36 @@ class MainDialogue extends Component {
     return Math.floor(Math.random() * Math.floor(max));
   }
 
+  getDateBar(text) {
+    return (
+      <div className="Date-bar">
+        <p>{text}</p>
+      </div>
+    );
+  }
+
+  getUserDialogue(id) {
+    return userDialogue.find(x => x.id === id).text;
+  }
+
+  getSamDialogue(id) {
+    return samDialogue.find(x => x.id === id).text;
+  }
+
+  getSummaryText(id) {
+    return summaryText.find(x => x.id === id).text;
+  }
+
+  toggleResponse1() {
+    this.changeDialogueState(responseID1);
+  }
+  toggleResponse2() {
+    this.changeDialogueState(responseID2);
+  }
+  toggleResponse3() {
+    this.changeDialogueState(responseID3);
+  }
+
   populateResponses(a, b, c) {
     var random = this.getRandomInt(3);
 
@@ -116,19 +165,183 @@ class MainDialogue extends Component {
     exchange++;
   }
 
-  getUserDialogue(id) {
-    return userDialogue.find(x => x.id === id).text;
-  }
+  retryMonth = currMonth => {
+    if (currMonth === 0) {
+      this.setState({
+        hideExchange1: true,
+        hideExchange2: true,
+        hideExchange3: true,
+        hideExchange4: true,
+        hideExchange5: true,
+        hideExchange6: true,
+        hideExchange7: true,
 
-  getSamDialogue(id) {
-    return samDialogue.find(x => x.id === id).text;
-  }
+        hideSummary0: true
+      });
+      exchange = 1;
+      month = 0;
 
-  getSummaryText(id) {
-    return summaryText.find(x => x.id === id).text;
+      responseID1 = "u1a";
+      responseID2 = "u1b";
+      responseID3 = "u1c";
+    } else if (currMonth === 6) {
+      this.setState({
+        hideExchange7: true,
+        hideExchange8: true,
+        hideExchange9: true,
+        hideExchange10: true,
+        hideExchange11: true,
+        hideExchange12: true,
+        hideExchange13: true,
+
+        hideSummary6: true
+      });
+      exchange = 7;
+      month = 6;
+
+      responseID1 = "u7a";
+      responseID2 = "u7b";
+      responseID3 = "u7c";
+    } else if (currMonth === 12) {
+      this.setState({
+        hideExchange13: true,
+        hideExchange14: true,
+        hideExchange15: true,
+        hideExchange16: true,
+        hideExchange17: true,
+
+        hideSummary12: true
+      });
+      exchange = 14;
+      month = 12;
+
+      if (followDream) {
+        responseID1 = "u14aD";
+        responseID2 = "u14bD";
+        responseID3 = "u14cD";
+      } else {
+        responseID1 = "u14aN";
+        responseID2 = "u14bN";
+        responseID3 = "u14cN";
+      }
+    } else if (currMonth === 18) {
+      this.setState({
+        hideExchange17: true,
+        hideExchange18: true,
+        hideExchange19: true,
+        hideExchange20: true,
+        hideExchange21: true,
+
+        hideSummary18: true
+      });
+      exchange = 18;
+      month = 18;
+
+      responseID1 = "u18a";
+      responseID2 = "u18b";
+      responseID3 = " ";
+    } else if (currMonth === 24) {
+      this.setState({
+        hideExchange21: true,
+        hideExchange22: true,
+        hideExchange23: true,
+
+        hideSummary24: true
+      });
+      exchange = 22;
+      month = 24;
+
+      if (goodEnding) {
+        responseID1 = "u22goodA";
+        responseID2 = "u22goodB";
+        responseID3 = " ";
+      } else {
+        responseID1 = "u22badA";
+        responseID2 = "u22badB";
+        responseID3 = " ";
+      }
+    }
+  };
+
+  continueMonth = currMonth => {
+    if (currMonth === 0) {
+      this.setState({
+        hideSummary0: true,
+        shownSummary0: true
+      });
+
+      month = 6;
+      starCount = 1;
+
+      responseID1 = "u7a";
+      responseID2 = "u7b";
+      responseID3 = "u7c";
+    } else if (currMonth === 6) {
+      this.setState({
+        hideSummary6: true,
+        shownSummary6: true
+      });
+
+      month = 12;
+      starCount = 1;
+
+      if (followDream) {
+        responseID1 = "u14aD";
+        responseID2 = "u14bD";
+        responseID3 = "u14cD";
+      } else {
+        responseID1 = "u14aN";
+        responseID2 = "u14bN";
+        responseID3 = "u14cN";
+      }
+    } else if (currMonth === 12) {
+      this.setState({
+        hideSummary12: true,
+        shownSummary12: true
+      });
+
+      month = 18;
+      starCount = 1;
+
+      responseID1 = "u18a";
+      responseID2 = "u18b";
+      responseID3 = " ";
+    } else if (currMonth === 18) {
+      this.setState({
+        hideSummary18: true,
+        shownSummary18: true
+      });
+
+      month = 24;
+      starCount = 1;
+
+      if (goodEnding) {
+        responseID1 = "u22goodA";
+        responseID2 = "u22goodB";
+        responseID3 = " ";
+      } else {
+        responseID1 = "u22badA";
+        responseID2 = "u22badB";
+        responseID3 = " ";
+      }
+    }
+  };
+
+  checkGameOver() {
+    if (heartCount === 0) {
+      if (month === 6) {
+        this.setState({
+          hideSummary6: false,
+          summary6: "m6-end1"
+        });
+      }
+    }
   }
 
   changeDialogueState(entry) {
+    // *************************************************//
+    // ****************** Month 0 **********************//
+    // *************************************************//
     if (exchange === 1) {
       if (entry === "u1a") {
         this.setState({
@@ -320,52 +533,510 @@ class MainDialogue extends Component {
         });
         this.populateResponses(" ", "gn", " ");
       }
+
+      // *************************************************//
+      // ****************** Month 6 **********************//
+      // *************************************************//
     } else if (exchange === 7) {
       if (entry === "gn") {
         this.setState({
           hideSummary0: false
         });
+      } else if (entry === "u7a") {
+        this.setState({
+          hideExchange7: false,
+          exchange7: "u7a"
+        });
+        this.populateResponses("u8a", "u8b", "u8c");
+      } else if (entry === "u7b") {
+        this.setState({
+          hideExchange7: false,
+          exchange7: "u7b"
+        });
+        this.populateResponses("u8a", "u8b", "u8c");
+      } else if (entry === "u7c") {
+        this.setState({
+          hideExchange7: false,
+          exchange7: "u7c"
+        });
+        this.populateResponses("u8a", "u8b", "u8c");
       }
-    }
-  }
-
-  toggleResponse1() {
-    this.changeDialogueState(responseID1);
-  }
-  toggleResponse2() {
-    this.changeDialogueState(responseID2);
-  }
-  toggleResponse3() {
-    this.changeDialogueState(responseID3);
-  }
-
-  retryMonth(month) {
-    if (month === 0) {
-      this.setState({
-        hideExchange1: true,
-        hideExchange2: true,
-        hideExchange3: true,
-        hideExchange4: true,
-        hideExchange5: true,
-        hideExchange6: true,
-        hideExchange7: true,
-
-        hideSummary0: true
-      });
-      exchange = 1;
-      month = 0;
-
-      responseID1 = "u1a";
-      responseID2 = "u1b";
-      responseID3 = "u1c";
-    }
-  }
-
-  continueMonth() {
-    if (month === 0) {
-      this.setState({
-        hideSummary0: true
-      });
+    } else if (exchange === 8) {
+      if (entry === "u8a") {
+        this.setState({
+          hideExchange8: false,
+          exchange8: "u8a"
+        });
+        this.populateResponses("u9a", "u9b", "u9c");
+      } else if (entry === "u8b") {
+        this.setState({
+          hideExchange8: false,
+          exchange8: "u8b"
+        });
+        this.populateResponses("u9a", "u9b", "u9c");
+      } else if (entry === "u8c") {
+        this.setState({
+          hideExchange8: false,
+          exchange8: "u8c"
+        });
+        this.populateResponses("u9a", "u9b", "u9c");
+      }
+    } else if (exchange === 9) {
+      if (entry === "u9a") {
+        this.setState({
+          hideExchange9: false,
+          exchange9: "u9a"
+        });
+        starCount++;
+        this.populateResponses("u10a", "u10b", " ");
+      } else if (entry === "u9b") {
+        this.setState({
+          hideExchange9: false,
+          exchange9: "u9b"
+        });
+        this.populateResponses("u10b", " ", " ");
+      } else if (entry === "u9c") {
+        // Bad ending
+        this.setState({
+          hideExchange9: false,
+          exchange9: "u9c"
+        });
+        heartCount = 0;
+        starCount = 0;
+        this.populateResponses("gn", " ", " ");
+      }
+    } else if (exchange === 10) {
+      if (entry === "gn") {
+        this.setState({
+          hideSummary6: false,
+          summary6: "m6-end1"
+        });
+      } else if (entry === "u10a") {
+        this.setState({
+          hideExchange10: false,
+          exchange10: "u10a"
+        });
+        this.populateResponses("u11a", "u11b", " ");
+      } else if (entry === "u10b") {
+        this.setState({
+          hideExchange10: false,
+          exchange10: "u10b"
+        });
+        this.populateResponses("u11a", "u11b", " ");
+      }
+    } else if (exchange === 11) {
+      if (entry === "u11a") {
+        this.setState({
+          hideExchange11: false,
+          exchange11: "u11a"
+        });
+        askedSuicide = true;
+        starCount++;
+        this.populateResponses("u12a", "u12b", "u12c");
+      } else if (entry === "u11b") {
+        this.setState({
+          hideExchange11: false,
+          exchange11: "u11b"
+        });
+        this.populateResponses("u12a", "u12b", " ");
+      }
+    } else if (exchange === 12) {
+      if (entry === "u12a") {
+        this.setState({
+          hideExchange12: false,
+          exchange12: "u12a"
+        });
+        this.populateResponses("u13a", "u13b", " ");
+      } else if (entry === "u12b") {
+        this.setState({
+          hideExchange12: false,
+          exchange12: "u12b"
+        });
+        this.populateResponses("u13c", "u13d", " ");
+      } else if (entry === "u12c") {
+        this.setState({
+          hideExchange12: false,
+          exchange12: "u12c"
+        });
+        this.populateResponses("u13a", "u13b", " ");
+      }
+    } else if (exchange === 13) {
+      if (entry === "u13a") {
+        this.setState({
+          hideExchange13: false,
+          exchange13: "u13a"
+        });
+        followDream = true;
+        this.populateResponses("gn", " ", " ");
+      } else if (entry === "u13b") {
+        this.setState({
+          hideExchange13: false,
+          exchange13: "u13b"
+        });
+        this.populateResponses("gn", " ", " ");
+      } else if (entry === "u13c") {
+        this.setState({
+          hideExchange13: false,
+          exchange13: "u13c"
+        });
+        this.populateResponses("gn", " ", " ");
+      } else if (entry === "u13d") {
+        this.setState({
+          hideExchange13: false,
+          exchange13: "u13d"
+        });
+        this.populateResponses("gn", " ", " ");
+      }
+      // *************************************************//
+      // ****************** Month 12 *********************//
+      // *************************************************//
+    } else if (exchange === 14) {
+      if (entry === "gn") {
+        if (askedSuicide) {
+          this.setState({
+            hideSummary6: false,
+            summary6: "m6-good"
+          });
+        } else {
+          this.setState({
+            hideSummary6: false,
+            summary6: "m6-ok"
+          });
+        }
+      } else if (entry === "u14aD") {
+        this.setState({
+          hideExchange14: false,
+          exchange14: "u14aD"
+        });
+        this.populateResponses("u15aD", "u15bD", " ");
+      } else if (entry === "u14bD") {
+        this.setState({
+          hideExchange14: false,
+          exchange14: "u14bD"
+        });
+        this.populateResponses("u15aD", "u15bD", " ");
+      } else if (entry === "u14cD") {
+        this.setState({
+          hideExchange14: false,
+          exchange14: "u14cD"
+        });
+        this.populateResponses("u15aD", "u15bD", " ");
+      } else if (entry === "u14aN") {
+        this.setState({
+          hideExchange14: false,
+          exchange14: "u14aN"
+        });
+        this.populateResponses("u15aN", "u15bN", " ");
+      } else if (entry === "u14bN") {
+        this.setState({
+          hideExchange14: false,
+          exchange14: "u14bN"
+        });
+        this.populateResponses("u15aN", "u15bN", " ");
+      } else if (entry === "u14cN") {
+        this.setState({
+          hideExchange14: false,
+          exchange14: "u14cN"
+        });
+        this.populateResponses("u15aN", "u15bN", " ");
+      }
+    } else if (exchange === 15) {
+      if (entry === "u15aD") {
+        this.setState({
+          hideExchange15: false,
+          exchange15: "u15aD"
+        });
+        followDream = false;
+        this.populateResponses("u16aD", "u16bD", "u16cD");
+      } else if (entry === "u15bD") {
+        this.setState({
+          hideExchange15: false,
+          exchange15: "u15bD"
+        });
+        this.populateResponses("u16aD", "u16bD", "u16cD");
+      } else if (entry === "u15aN") {
+        this.setState({
+          hideExchange15: false,
+          exchange15: "u15aN"
+        });
+        this.populateResponses("u16aN", "u16bN", "u16cN");
+      } else if (entry === "u15bN") {
+        this.setState({
+          hideExchange15: false,
+          exchange15: "u15bN"
+        });
+        this.populateResponses("u16aN", "u16bN", "u16cN");
+      }
+    } else if (exchange === 16) {
+      if (entry === "u16aD") {
+        this.setState({
+          hideExchange16: false,
+          exchange16: "u16aD"
+        });
+        starCount++;
+        this.populateResponses("u17a", "u17b", "u17g");
+      } else if (entry === "u16bD") {
+        this.setState({
+          hideExchange16: false,
+          exchange16: "u16bD"
+        });
+        this.populateResponses("u17c", "u17d", "u17f");
+      } else if (entry === "u16cD") {
+        this.setState({
+          hideExchange16: false,
+          exchange16: "u16cD"
+        });
+        this.populateResponses("u17a", "u17b", "u17e");
+      } else if (entry === "u16aN") {
+        this.setState({
+          hideExchange16: false,
+          exchange16: "u16aN"
+        });
+        this.populateResponses("u17a", "u17b", "u17g");
+      } else if (entry === "u16bN") {
+        this.setState({
+          hideExchange16: false,
+          exchange16: "u16bN"
+        });
+        this.populateResponses("u17c", "u17d", "u17f");
+      } else if (entry === "u16cN") {
+        this.setState({
+          hideExchange16: false,
+          exchange16: "u16cN"
+        });
+        this.populateResponses("u17a", "u17b", "u17e");
+      }
+    } else if (exchange === 17) {
+      if (entry === "u17a") {
+        this.setState({
+          hideExchange17: false,
+          exchange17: "u17a"
+        });
+        starCount++;
+        this.populateResponses("gn", " ", " ");
+      } else if (entry === "u17b") {
+        this.setState({
+          hideExchange17: false,
+          exchange17: "u17b"
+        });
+        starCount++;
+        this.populateResponses("gn", " ", " ");
+      } else if (entry === "u17c") {
+        this.setState({
+          hideExchange17: false,
+          exchange17: "u17c"
+        });
+        starCount++;
+        this.populateResponses("gn", " ", " ");
+      } else if (entry === "u17d") {
+        this.setState({
+          hideExchange17: false,
+          exchange17: "u17d"
+        });
+        this.populateResponses("gn", " ", " ");
+      } else if (entry === "u17e") {
+        this.setState({
+          hideExchange17: false,
+          exchange17: "u17e"
+        });
+        this.populateResponses("gn", " ", " ");
+      } else if (entry === "u17f") {
+        this.setState({
+          hideExchange17: false,
+          exchange17: "u17f"
+        });
+        this.populateResponses("gn", " ", " ");
+      } else if (entry === "u17g") {
+        this.setState({
+          hideExchange17: false,
+          exchange17: "u17g"
+        });
+        this.populateResponses("gn", " ", " ");
+      }
+      // *************************************************//
+      // ****************** Month 18 *********************//
+      // *************************************************//
+    } else if (exchange === 18) {
+      if (entry === "gn") {
+        if (
+          this.state.exchange16 === "u16bN" ||
+          this.state.exchange16 === "u16bD"
+        ) {
+          if (
+            this.state.exchange17 === "u17d" ||
+            this.state.exchange17 === "u17e" ||
+            this.state.exchange17 === "u17f" ||
+            this.state.exchange17 === "u17g"
+          ) {
+            this.setState({
+              hideSummary12: false,
+              summary12: "m12-end1"
+            });
+            heartCount = 0;
+            starCount = 0;
+          } else {
+            this.setState({
+              hideSummary12: false,
+              summary12: "m12-better"
+            });
+          }
+        } else if (starCount === 3) {
+          this.setState({
+            hideSummary12: false,
+            summary12: "m12-best"
+          });
+        } else if (starCount === 2) {
+          this.setState({
+            hideSummary12: false,
+            summary12: "m12-better"
+          });
+        } else if (starCount === 1) {
+          this.setState({
+            hideSummary12: false,
+            summary12: "m12-ok"
+          });
+        }
+      } else if (entry === "u18a") {
+        this.setState({
+          hideExchange18: false,
+          exchange18: "u18a"
+        });
+        this.populateResponses("u19a", "u19b", " ");
+      } else if (entry === "u18b") {
+        this.setState({
+          hideExchange18: false,
+          exchange18: "u18b"
+        });
+        this.populateResponses("u19a", "u19b", " ");
+      }
+    } else if (exchange === 19) {
+      if (entry === "u19a") {
+        this.setState({
+          hideExchange19: false,
+          exchange19: "u19a"
+        });
+        starCount++;
+        this.populateResponses("u20a", "u20b", "u20c");
+      } else if (entry === "u19b") {
+        this.setState({
+          hideExchange19: false,
+          exchange19: "u19b"
+        });
+        this.populateResponses("u20a", "u20b", "u20c");
+      }
+    } else if (exchange === 20) {
+      if (entry === "u20a") {
+        this.setState({
+          hideExchange20: false,
+          exchange20: "u20a"
+        });
+        this.populateResponses("u21c", " ", " ");
+      } else if (entry === "u20b") {
+        this.setState({
+          hideExchange20: false,
+          exchange20: "u20b"
+        });
+        this.populateResponses("u21d", " ", " ");
+      } else if (entry === "u20c") {
+        this.setState({
+          hideExchange20: false,
+          exchange20: "u20c"
+        });
+        starCount++;
+        goodEnding = true;
+        this.populateResponses("u21a", "u21b", " ");
+      }
+    } else if (exchange === 21) {
+      if (entry === "u21a") {
+        this.setState({
+          hideExchange21: false,
+          exchange21: "u21a"
+        });
+        this.populateResponses("gn", " ", " ");
+      } else if (entry === "u21b") {
+        this.setState({
+          hideExchange21: false,
+          exchange21: "u21b"
+        });
+        starCount++;
+        this.populateResponses("gn", " ", " ");
+      } else if (entry === "u21c") {
+        this.setState({
+          hideExchange21: false,
+          exchange21: "u21c"
+        });
+        this.populateResponses("gn", " ", " ");
+      } else if (entry === "u21d") {
+        this.setState({
+          hideExchange21: false,
+          exchange21: "u21d"
+        });
+        this.populateResponses("gn", " ", " ");
+      }
+      // *************************************************//
+      // ****************** Month 24 *********************//
+      // *************************************************//
+    } else if (exchange === 22) {
+      if (entry === "gn") {
+        if (this.state.exchange20 === "u20a") {
+          this.setState({
+            hideSummary18: false,
+            summary18: "m18-end1"
+          });
+          heartCount = 0;
+          starCount = 1;
+        } else if (this.state.exchange20 === "u20b") {
+          this.setState({
+            hideSummary18: false,
+            summary18: "m18-end2"
+          });
+          heartCount = 0;
+          starCount = 0;
+        } else {
+          this.setState({
+            hideSummary18: false,
+            summary18: "m18-good"
+          });
+        }
+      } else if (entry === "u22badA") {
+        this.setState({
+          hideExchange22: false,
+          exchange22: "u22badA"
+        });
+        this.populateResponses(":(", " ", " ");
+      } else if (entry === "u22badB") {
+        this.setState({
+          hideExchange22: false,
+          exchange22: "u22badB"
+        });
+        this.populateResponses(":(", " ", " ");
+      } else if (entry === "u22goodA") {
+        this.setState({
+          hideExchange22: false,
+          exchange22: "u22goodA"
+        });
+        starCount++;
+        this.populateResponses(":)", " ", " ");
+      } else if (entry === "u22goodB") {
+        this.setState({
+          hideExchange22: false,
+          exchange22: "u22goodB"
+        });
+        starCount++;
+        this.populateResponses(":)", " ", " ");
+      }
+    } else if (exchange === 23) {
+      if (entry === ":)") {
+        this.setState({
+          hideSummary24: false,
+          summary24: "m24-GoodEnding"
+        });
+      } else if (entry === ":(") {
+        this.setState({
+          hideSummary24: false,
+          summary24: "m24-BadEnding"
+        });
+      }
     }
   }
 
@@ -374,14 +1045,18 @@ class MainDialogue extends Component {
       <div>
         <div className="Dialogue-main">
           <div className="Side-bar-container">
-            <HeartBar />
-            <StarBar />
+            <HeartBar heartCount={heartCount} />
+            <StarBar starCount={starCount} />
           </div>
           <div className="Box">
             <div className="Box-content" id="Dialogue">
               {/* ********************************************************************************** */}
               {/* ***********************************  MONTH 0 ************************************* */}
               {/* ********************************************************************************** */}
+              <div className="Date-bar" id="Month0">
+                <p>Month 0</p>
+              </div>
+
               <SamDialogue dialogue="Hey Quinn!" />
 
               {!this.state.hideExchange1 && (
@@ -535,7 +1210,469 @@ class MainDialogue extends Component {
                 <Summary
                   summary={this.getSummaryText("m0-default")}
                   retryMonth={this.retryMonth}
+                  continueMonth={this.continueMonth}
                   month={month}
+                  starCount={starCount}
+                />
+              )}
+
+              {/* ********************************************************************************** */}
+              {/* ***********************************  MONTH 6 ************************************* */}
+              {/* ********************************************************************************** */}
+
+              {this.state.shownSummary0 && this.getDateBar("Month 6")}
+
+              {!this.state.hideExchange7 && (
+                <UserDialogue
+                  dialogue={this.getUserDialogue(this.state.exchange7)}
+                />
+              )}
+
+              {!this.state.hideExchange7 && (
+                <SamDialogue dialogue={this.getSamDialogue("s7a")} />
+              )}
+
+              {!this.state.hideExchange8 && (
+                <UserDialogue
+                  dialogue={this.getUserDialogue(this.state.exchange8)}
+                />
+              )}
+
+              {!this.state.hideExchange8 && (
+                <SamDialogue dialogue={this.getSamDialogue("s8a")} />
+              )}
+
+              {!this.state.hideExchange9 && (
+                <UserDialogue
+                  dialogue={this.getUserDialogue(this.state.exchange9)}
+                />
+              )}
+
+              {!this.state.hideExchange9 && this.state.exchange9 === "u9a" && (
+                <SamDialogue dialogue={this.getSamDialogue("s9a")} />
+              )}
+
+              {!this.state.hideExchange9 && this.state.exchange9 === "u9b" && (
+                <SamDialogue dialogue={this.getSamDialogue("s9b")} />
+              )}
+
+              {!this.state.hideExchange9 && this.state.exchange9 === "u9c" && (
+                <SamDialogue dialogue={this.getSamDialogue("s9c")} />
+              )}
+
+              {!this.state.hideExchange10 && (
+                <UserDialogue
+                  dialogue={this.getUserDialogue(this.state.exchange10)}
+                />
+              )}
+
+              {!this.state.hideExchange10 &&
+                this.state.exchange10 === "u10a" && (
+                  <SamDialogue dialogue={this.getSamDialogue("s10a")} />
+                )}
+
+              {!this.state.hideExchange10 &&
+                this.state.exchange10 === "u10b" && (
+                  <SamDialogue dialogue={this.getSamDialogue("s10b")} />
+                )}
+
+              {!this.state.hideExchange10 && (
+                <SamDialogue dialogue={this.getSamDialogue("s10a2")} />
+              )}
+
+              {!this.state.hideExchange10 && (
+                <SamDialogue dialogue={this.getSamDialogue("s10a3")} />
+              )}
+
+              {!this.state.hideExchange10 && (
+                <SamDialogue dialogue={this.getSamDialogue("s10a4")} />
+              )}
+
+              {!this.state.hideExchange11 && (
+                <UserDialogue
+                  dialogue={this.getUserDialogue(this.state.exchange11)}
+                />
+              )}
+
+              {!this.state.hideExchange11 &&
+                this.state.exchange11 === "u11a" && (
+                  <SamDialogue dialogue={this.getSamDialogue("s11a")} />
+                )}
+
+              {!this.state.hideExchange11 &&
+                this.state.exchange11 === "u11a" && (
+                  <SamDialogue dialogue={this.getSamDialogue("s11a2")} />
+                )}
+
+              {!this.state.hideExchange11 &&
+                this.state.exchange11 === "u11b" && (
+                  <SamDialogue dialogue={this.getSamDialogue("s11b")} />
+                )}
+
+              {!this.state.hideExchange11 &&
+                this.state.exchange11 === "u11b" && (
+                  <SamDialogue dialogue={this.getSamDialogue("s11b2")} />
+                )}
+
+              {!this.state.hideExchange12 && (
+                <UserDialogue
+                  dialogue={this.getUserDialogue(this.state.exchange12)}
+                />
+              )}
+
+              {!this.state.hideExchange12 &&
+                this.state.exchange12 === "u12a" && (
+                  <SamDialogue dialogue={this.getSamDialogue("s12a")} />
+                )}
+              {!this.state.hideExchange12 &&
+                this.state.exchange12 === "u12b" && (
+                  <SamDialogue dialogue={this.getSamDialogue("s12b")} />
+                )}
+              {!this.state.hideExchange12 &&
+                this.state.exchange12 === "u12c" && (
+                  <SamDialogue dialogue={this.getSamDialogue("s12c")} />
+                )}
+              {!this.state.hideExchange12 &&
+                this.state.exchange12 === "u12c" && (
+                  <SamDialogue dialogue={this.getSamDialogue("s12c2")} />
+                )}
+              {!this.state.hideExchange12 &&
+                this.state.exchange12 === "u12c" && (
+                  <SamDialogue dialogue={this.getSamDialogue("s12c3")} />
+                )}
+              {!this.state.hideExchange12 &&
+                this.state.exchange12 === "u12c" && (
+                  <SamDialogue dialogue={this.getSamDialogue("s12a")} />
+                )}
+
+              {!this.state.hideExchange13 && (
+                <UserDialogue
+                  dialogue={this.getUserDialogue(this.state.exchange13)}
+                />
+              )}
+              {!this.state.hideExchange13 &&
+                this.state.exchange13 === "u13a" && (
+                  <SamDialogue dialogue={this.getSamDialogue("s13a")} />
+                )}
+              {!this.state.hideExchange13 &&
+                this.state.exchange13 === "u13a" && (
+                  <SamDialogue dialogue={this.getSamDialogue("s13a2")} />
+                )}
+              {!this.state.hideExchange13 &&
+                this.state.exchange13 === "u13b" && (
+                  <SamDialogue dialogue={this.getSamDialogue("s13b")} />
+                )}
+              {!this.state.hideExchange13 &&
+                this.state.exchange13 === "u13b" && (
+                  <SamDialogue dialogue={this.getSamDialogue("s13b2")} />
+                )}
+              {!this.state.hideExchange13 &&
+                this.state.exchange13 === "u13c" && (
+                  <SamDialogue dialogue={this.getSamDialogue("s13c")} />
+                )}
+              {!this.state.hideExchange13 &&
+                this.state.exchange13 === "u13c" && (
+                  <SamDialogue dialogue={this.getSamDialogue("s13c2")} />
+                )}
+              {!this.state.hideExchange13 &&
+                this.state.exchange13 === "u13d" && (
+                  <SamDialogue dialogue={this.getSamDialogue("s13d")} />
+                )}
+              {!this.state.hideExchange13 &&
+                this.state.exchange13 === "u13d" && (
+                  <SamDialogue dialogue={this.getSamDialogue("s13d2")} />
+                )}
+              {!this.state.hideExchange13 &&
+                this.state.exchange13 === "u13d" && (
+                  <SamDialogue dialogue={this.getSamDialogue("s13d3")} />
+                )}
+              {!this.state.hideExchange13 && (
+                <SamDialogue dialogue={this.getSamDialogue("s13all")} />
+              )}
+
+              {!this.state.hideSummary6 && (
+                <Summary
+                  summary={this.getSummaryText(this.state.summary6)}
+                  retryMonth={this.retryMonth}
+                  continueMonth={this.continueMonth}
+                  month={month}
+                  starCount={starCount}
+                />
+              )}
+
+              {/* ********************************************************************************** */}
+              {/* ********************************  MONTH 12  ************************************** */}
+              {/* ********************************************************************************** */}
+              {this.state.shownSummary6 && this.getDateBar("Month 12")}
+              {this.state.shownSummary6 && followDream && (
+                <SamDialogue dialogue={this.getSamDialogue("s14preD")} />
+              )}
+              {this.state.shownSummary6 && !followDream && (
+                <SamDialogue dialogue={this.getSamDialogue("s14preN")} />
+              )}
+              {!this.state.hideExchange14 && (
+                <UserDialogue
+                  dialogue={this.getUserDialogue(this.state.exchange14)}
+                />
+              )}
+              {!this.state.hideExchange14 &&
+                this.state.exchange14 === "u14aD" && (
+                  <SamDialogue dialogue={this.getSamDialogue("s14aD")} />
+                )}
+              {!this.state.hideExchange14 &&
+                this.state.exchange14 === "u14bD" && (
+                  <SamDialogue dialogue={this.getSamDialogue("s14bD")} />
+                )}
+              {!this.state.hideExchange14 &&
+                this.state.exchange14 === "u14cD" && (
+                  <SamDialogue dialogue={this.getSamDialogue("s14cD")} />
+                )}
+              {!this.state.hideExchange14 &&
+                this.state.exchange14 === "u14aN" && (
+                  <SamDialogue dialogue={this.getSamDialogue("s14aN")} />
+                )}
+              {!this.state.hideExchange14 &&
+                this.state.exchange14 === "u14bN" && (
+                  <SamDialogue dialogue={this.getSamDialogue("s14bN")} />
+                )}
+              {!this.state.hideExchange14 &&
+                this.state.exchange14 === "u14cN" && (
+                  <SamDialogue dialogue={this.getSamDialogue("s14cN")} />
+                )}
+              {!this.state.hideExchange14 && (
+                <SamDialogue dialogue={this.getSamDialogue("s14allN")} />
+              )}
+              {!this.state.hideExchange14 && (
+                <SamDialogue dialogue={this.getSamDialogue("s14all2N")} />
+              )}
+              {!this.state.hideExchange15 && (
+                <UserDialogue
+                  dialogue={this.getUserDialogue(this.state.exchange15)}
+                />
+              )}
+              {!this.state.hideExchange15 &&
+                this.state.exchange15 === "u15aD" && (
+                  <SamDialogue dialogue={this.getSamDialogue("s15aD")} />
+                )}
+              {!this.state.hideExchange15 &&
+                this.state.exchange15 === "u15bD" && (
+                  <SamDialogue dialogue={this.getSamDialogue("s15bD")} />
+                )}
+              {!this.state.hideExchange15 &&
+                this.state.exchange15 === "u15aN" && (
+                  <SamDialogue dialogue={this.getSamDialogue("s15aN")} />
+                )}
+              {!this.state.hideExchange15 &&
+                this.state.exchange15 === "u15bN" && (
+                  <SamDialogue dialogue={this.getSamDialogue("s15bN")} />
+                )}
+              {!this.state.hideExchange15 && (
+                <SamDialogue dialogue={this.getSamDialogue("s15allD")} />
+              )}
+              {!this.state.hideExchange16 && (
+                <UserDialogue
+                  dialogue={this.getUserDialogue(this.state.exchange16)}
+                />
+              )}
+              {!this.state.hideExchange16 &&
+                (this.state.exchange16 === "u16aD" ||
+                  this.state.exchange16 === "u16aN") && (
+                  <SamDialogue dialogue={this.getSamDialogue("s16a")} />
+                )}
+              {!this.state.hideExchange16 &&
+                (this.state.exchange16 === "u16bD" ||
+                  this.state.exchange16 === "u16bN") && (
+                  <SamDialogue dialogue={this.getSamDialogue("s16b")} />
+                )}
+              {!this.state.hideExchange16 &&
+                (this.state.exchange16 === "u16cD" ||
+                  this.state.exchange16 === "u16cN") && (
+                  <SamDialogue dialogue={this.getSamDialogue("s16c")} />
+                )}
+              {!this.state.hideExchange17 && (
+                <UserDialogue
+                  dialogue={this.getUserDialogue(this.state.exchange17)}
+                />
+              )}
+              {!this.state.hideExchange17 &&
+                this.state.exchange17 === "u17a" && (
+                  <SamDialogue dialogue={this.getSamDialogue("s17a")} />
+                )}
+              {!this.state.hideExchange17 &&
+                this.state.exchange17 === "u17a" && (
+                  <SamDialogue dialogue={this.getSamDialogue("s17a2")} />
+                )}
+              {!this.state.hideExchange17 &&
+                this.state.exchange17 === "u17b" && (
+                  <SamDialogue dialogue={this.getSamDialogue("s17b")} />
+                )}
+              {!this.state.hideExchange17 &&
+                this.state.exchange17 === "u17c" && (
+                  <SamDialogue dialogue={this.getSamDialogue("s17c")} />
+                )}
+              {!this.state.hideExchange17 &&
+                this.state.exchange17 === "u17d" && (
+                  <SamDialogue dialogue={this.getSamDialogue("s17d")} />
+                )}
+              {!this.state.hideExchange17 &&
+                this.state.exchange17 === "u17e" && (
+                  <SamDialogue dialogue={this.getSamDialogue("s17e")} />
+                )}
+              {!this.state.hideExchange17 && (
+                <SamDialogue dialogue={this.getSamDialogue("s17all")} />
+              )}
+              {!this.state.hideSummary12 && (
+                <Summary
+                  summary={this.getSummaryText(this.state.summary12)}
+                  retryMonth={this.retryMonth}
+                  continueMonth={this.continueMonth}
+                  month={month}
+                  starCount={starCount}
+                />
+              )}
+
+              {/* ********************************************************************************** */}
+              {/* ********************************  MONTH 18  ************************************** */}
+              {/* ********************************************************************************** */}
+              {this.state.shownSummary12 && this.getDateBar("Month 18")}
+              {this.state.shownSummary12 && (
+                <SamDialogue dialogue={this.getSamDialogue("s18pre")} />
+              )}
+              {this.state.shownSummary12 && (
+                <SamDialogue dialogue={this.getSamDialogue("s18pre2")} />
+              )}
+              {!this.state.hideExchange18 && (
+                <UserDialogue
+                  dialogue={this.getUserDialogue(this.state.exchange18)}
+                />
+              )}
+              {!this.state.hideExchange18 && (
+                <SamDialogue dialogue={this.getSamDialogue("s18a")} />
+              )}
+              {!this.state.hideExchange19 && (
+                <UserDialogue
+                  dialogue={this.getUserDialogue(this.state.exchange19)}
+                />
+              )}
+              {!this.state.hideExchange19 &&
+                this.state.exchange19 === "u19a" && (
+                  <SamDialogue dialogue={this.getSamDialogue("s19a")} />
+                )}
+              {!this.state.hideExchange19 &&
+                this.state.exchange19 === "u19b" && (
+                  <SamDialogue dialogue={this.getSamDialogue("s19b")} />
+                )}
+              {!this.state.hideExchange19 &&
+                this.state.exchange19 === "u19b" && (
+                  <SamDialogue dialogue={this.getSamDialogue("s19b2")} />
+                )}
+              {!this.state.hideExchange20 && (
+                <UserDialogue
+                  dialogue={this.getUserDialogue(this.state.exchange20)}
+                />
+              )}
+              {!this.state.hideExchange20 &&
+                this.state.exchange20 === "u20a" && (
+                  <SamDialogue dialogue={this.getSamDialogue("s20a")} />
+                )}
+              {!this.state.hideExchange20 &&
+                this.state.exchange20 === "u20a" && (
+                  <SamDialogue dialogue={this.getSamDialogue("s20a2")} />
+                )}
+              {!this.state.hideExchange20 &&
+                this.state.exchange20 === "u20b" && (
+                  <SamDialogue dialogue={this.getSamDialogue("s20b")} />
+                )}
+              {!this.state.hideExchange20 &&
+                this.state.exchange20 === "u20c" && (
+                  <SamDialogue dialogue={this.getSamDialogue("s20c")} />
+                )}
+              {!this.state.hideExchange20 &&
+                this.state.exchange20 === "u20c" && (
+                  <SamDialogue dialogue={this.getSamDialogue("s20c2")} />
+                )}
+              {!this.state.hideExchange21 && (
+                <UserDialogue
+                  dialogue={this.getUserDialogue(this.state.exchange21)}
+                />
+              )}
+              {!this.state.hideExchange21 &&
+                this.state.exchange21 === "u21a" && (
+                  <SamDialogue dialogue={this.getSamDialogue("s21a")} />
+                )}
+              {!this.state.hideExchange21 &&
+                this.state.exchange21 === "u21a" && (
+                  <SamDialogue dialogue={this.getSamDialogue("s21a2")} />
+                )}
+              {!this.state.hideExchange21 &&
+                this.state.exchange21 === "u21b" && (
+                  <SamDialogue dialogue={this.getSamDialogue("s21b")} />
+                )}
+              {!this.state.hideExchange21 &&
+                this.state.exchange21 === "u21b" && (
+                  <SamDialogue dialogue={this.getSamDialogue("s21b2")} />
+                )}
+              {!this.state.hideSummary18 && (
+                <Summary
+                  summary={this.getSummaryText(this.state.summary18)}
+                  retryMonth={this.retryMonth}
+                  continueMonth={this.continueMonth}
+                  month={month}
+                  starCount={starCount}
+                />
+              )}
+
+              {/* ********************************************************************************** */}
+              {/* ********************************  MONTH 24  ************************************** */}
+              {/* ********************************************************************************** */}
+              {this.state.shownSummary18 && this.getDateBar("Month 24")}
+              {this.state.shownSummary18 && !goodEnding && (
+                <SamDialogue dialogue={this.getSamDialogue("s22pre-bad")} />
+              )}
+              {this.state.shownSummary18 && goodEnding && (
+                <SamDialogue dialogue={this.getSamDialogue("s22pre-good")} />
+              )}
+              {this.state.shownSummary18 && goodEnding && (
+                <SamDialogue dialogue={this.getSamDialogue("s22pre-good2")} />
+              )}
+              {!this.state.hideExchange22 && (
+                <UserDialogue
+                  dialogue={this.getUserDialogue(this.state.exchange22)}
+                />
+              )}
+              {!this.state.hideExchange22 && !goodEnding && (
+                <SamDialogue dialogue={this.getSamDialogue("s22bad")} />
+              )}
+              {!this.state.hideExchange22 && goodEnding && (
+                <SamDialogue dialogue={this.getSamDialogue("s22good")} />
+              )}
+              {!this.state.hideExchange22 && goodEnding && followDream && (
+                <SamDialogue dialogue={this.getSamDialogue("s22good2D")} />
+              )}
+              {!this.state.hideExchange22 && goodEnding && !followDream && (
+                <SamDialogue dialogue={this.getSamDialogue("s22good2N")} />
+              )}
+              {!this.state.hideExchange22 && goodEnding && (
+                <SamDialogue dialogue={this.getSamDialogue("s22good3")} />
+              )}
+              {!this.state.hideExchange22 && goodEnding && (
+                <SamDialogue dialogue={this.getSamDialogue("s22good4")} />
+              )}
+              {!this.state.hideExchange22 && goodEnding && (
+                <SamDialogue dialogue={this.getSamDialogue("s22good5")} />
+              )}
+              {!this.state.hideExchange23 && (
+                <UserDialogue
+                  dialogue={this.getUserDialogue(this.state.exchange23)}
+                />
+              )}
+              {!this.state.hideSummary24 && (
+                <Summary
+                  summary={this.getSummaryText(this.state.summary24)}
+                  retryMonth={this.retryMonth}
+                  continueMonth={this.continueMonth}
+                  month={month}
+                  starCount={starCount}
                 />
               )}
             </div>
