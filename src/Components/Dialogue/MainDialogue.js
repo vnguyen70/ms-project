@@ -180,6 +180,7 @@ class MainDialogue extends Component {
       });
       exchange = 1;
       month = 0;
+      starCount = 1;
 
       responseID1 = "u1a";
       responseID2 = "u1b";
@@ -198,6 +199,7 @@ class MainDialogue extends Component {
       });
       exchange = 7;
       month = 6;
+      starCount = 1;
 
       responseID1 = "u7a";
       responseID2 = "u7b";
@@ -214,6 +216,7 @@ class MainDialogue extends Component {
       });
       exchange = 14;
       month = 12;
+      starCount = 1;
 
       if (followDream) {
         responseID1 = "u14aD";
@@ -236,6 +239,7 @@ class MainDialogue extends Component {
       });
       exchange = 18;
       month = 18;
+      starCount = 1;
 
       responseID1 = "u18a";
       responseID2 = "u18b";
@@ -250,6 +254,7 @@ class MainDialogue extends Component {
       });
       exchange = 22;
       month = 24;
+      starCount = 1;
 
       if (goodEnding) {
         responseID1 = "u22goodA";
@@ -792,6 +797,7 @@ class MainDialogue extends Component {
           hideExchange16: false,
           exchange16: "u16aN"
         });
+        starCount++;
         this.populateResponses("u17a", "u17b", "u17g");
       } else if (entry === "u16bN") {
         this.setState({
