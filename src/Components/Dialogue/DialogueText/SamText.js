@@ -3,22 +3,23 @@ export const samDialogue = [
   {
     id: "s1a",
     text:
-      "Hi!! Glad to see you're on Bookface! I thought you weren't big on social media?"
+      "Hi!! Glad to see you're on Friendstagram! I thought you weren't big on social media?"
   },
   {
     id: "s1b",
     text:
-      "Hey. :) Glad to see you're on Bookface! I thought you weren't big on social media?"
+      "Hey. :) Glad to see you're on Friendstagram! I thought you weren't big on social media?"
   },
   {
     id: "s1c",
     text:
-      "HAHA. That's a good one. We just started talking! Glad to see you're on Bookface though. I thought you weren't big on social media?"
+      "HAHA. That's a good one. We just started talking! Glad to see you're on Friendstagram though. I thought you weren't big on social media?"
   },
 
   {
     id: "s2a",
-    text: "Oh yeah, you guys are still dating, right? How's that going?"
+    text:
+      "Oh yeah, you guys were super close when we all hung out a few years ago, right? How're you guys doing now?"
   },
   { id: "s2b", text: "Yeah, maybe the cool kids a few years ago haha." },
   { id: "s2b2", text: "How're you doing?" },
@@ -68,7 +69,7 @@ export const samDialogue = [
   {
     id: "s3h",
     text:
-      "Yeah I'm surprised it took you so long to make a Bookface. Even someone as antisocial as me has one. "
+      "Yeah I'm surprised it took you so long to make a Friendstagram. Even someone as antisocial as me has one. "
   },
 
   {
@@ -210,7 +211,7 @@ export const samDialogue = [
   {
     id: "s12a",
     text:
-      "Idk if you remember, but my dream's always been to be a singer. The industry's super competitive though lol and if I don't make it, I won't be able to pay the bills."
+      "Thanks... Sometimes I just want to do anything else besides staying here at this company. Idk if you remember, but my dream's always been to be a singer. The industry's super competitive though lol and if I don't make it, I won't be able to pay the bills."
   },
   {
     id: "s12b",
@@ -398,12 +399,12 @@ export const samDialogue = [
   {
     id: "s19b",
     text:
-      "Yeah, I mean. I've thought about it before, but idk. I don't think that's for me. Like. Sure, I'm sad, but I don't think it's bad enough that I REALLY need to go. Talking to you has been helping me a lot."
+      "Yeah, I mean. I've thought about it before, but idk. I don't think that's for me. Like. Sure, I'm sad, but I don't think it's bad enough that I REALLY need to go."
   },
   {
     id: "s19b2",
     text:
-      "Seriously, thanks for helping me. Sorry if I can be difficult sometimes. It's just... been really hard. I don't know what I'd do without you, Quinn."
+      "Talking to you has been helping me a lot though. Seriously, thanks for helping me. Sorry if I can be difficult sometimes. It's just... been really hard. I don't know what I'd do without you, Quinn."
   },
 
   {

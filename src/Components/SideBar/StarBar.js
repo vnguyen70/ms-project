@@ -9,7 +9,13 @@ var topIcon = starOff;
 var midIcon = starOff;
 var botIcon = starOn;
 
+var month = 0;
+
 class StarBar extends Component {
+  getMonth() {
+    month = this.props.month;
+  }
+
   getIcons() {
     if (this.props.starCount === 0) {
       topIcon = starOff;
@@ -31,27 +37,37 @@ class StarBar extends Component {
   }
 
   render() {
+    this.getMonth();
     this.getIcons();
+
     return (
       <div className="Side-bar" id="Stars-bar">
-        <img
-          src={topIcon}
-          className="Side-icon"
-          id="Star-icon"
-          alt="star icon"
-        />
-        <img
-          src={midIcon}
-          className="Side-icon"
-          id="Star-icon"
-          alt="star icon"
-        />
-        <img
-          src={botIcon}
-          className="Side-icon"
-          id="Star-icon"
-          alt="star icon"
-        />
+        {month != 0 && (
+          <img
+            src={topIcon}
+            className="Side-icon"
+            id="Star-icon"
+            alt="star icon"
+          />
+        )}
+
+        {month != 0 && (
+          <img
+            src={midIcon}
+            className="Side-icon"
+            id="Star-icon"
+            alt="star icon"
+          />
+        )}
+
+        {month != 0 && (
+          <img
+            src={botIcon}
+            className="Side-icon"
+            id="Star-icon"
+            alt="star icon"
+          />
+        )}
       </div>
     );
   }

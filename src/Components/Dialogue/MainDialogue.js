@@ -5,6 +5,8 @@ import responseBubble from "../../Assets/response-bubble.png";
 
 import "../../App.css";
 
+import Intro from "../Intro/Intro";
+
 import Summary from "../Summary/Summary";
 import { summaryText } from "../Summary/summaryText";
 
@@ -16,6 +18,11 @@ import { userDialogue } from "./DialogueText/UserText";
 
 import HeartBar from "../SideBar/HeartBar";
 import StarBar from "../SideBar/StarBar";
+import { delay } from "q";
+
+// import { CSSTransitionGroup } from "react-transition-group"; // ES6
+
+var CSSTransitionGroup = require("react-transition-group/CSSTransitionGroup"); // ES5 with npm
 
 var month = 0;
 var starCount = 1;
@@ -38,6 +45,14 @@ class MainDialogue extends Component {
     super();
 
     this.state = {
+      showIntro: true,
+
+      nameFinal: "Quinn",
+
+      button1Disable: false,
+      button2Disable: false,
+      button3Disable: false,
+
       hideExchange1: true,
       hideExchange2: true,
       hideExchange3: true,
@@ -61,6 +76,30 @@ class MainDialogue extends Component {
       hideExchange21: true,
       hideExchange22: true,
       hideExchange23: true,
+
+      hideSam1: true,
+      hideSam2: true,
+      hideSam3: true,
+      hideSam4: true,
+      hideSam5: true,
+      hideSam6: true,
+      hideSam7: true,
+      hideSam8: true,
+      hideSam9: true,
+      hideSam10: true,
+      hideSam11: true,
+      hideSam12: true,
+      hideSam13: true,
+      hideSam14: true,
+      hideSam15: true,
+      hideSam16: true,
+      hideSam17: true,
+      hideSam18: true,
+      hideSam19: true,
+      hideSam20: true,
+      hideSam21: true,
+      hideSam22: true,
+      hideSam23: true,
 
       exchange1: " ",
       exchange2: " ",
@@ -111,6 +150,21 @@ class MainDialogue extends Component {
     };
   }
 
+  toggleIntro = introState => {
+    this.setState({
+      showIntro: introState
+    });
+  };
+
+  setName = newName => {
+    if (newName === "") {
+      newName = "Quinn";
+    }
+    this.setState({
+      nameFinal: newName
+    });
+  };
+
   getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
   }
@@ -128,44 +182,135 @@ class MainDialogue extends Component {
   }
 
   getSamDialogue(id) {
-    return samDialogue.find(x => x.id === id).text;
+    var dialogueTemp = samDialogue.find(x => x.id === id).text;
+    var dialogueFinal = "";
+
+    if (
+      id === "s7a" ||
+      id === "s13a2" ||
+      id === "s13b2" ||
+      id === "s13c2" ||
+      id === "s13d3" ||
+      id === "s14bD" ||
+      id === "s18pre" ||
+      id === "s19b2" ||
+      id === "s20a" ||
+      id === "s21b"
+    ) {
+      dialogueFinal = dialogueTemp.replace("Quinn", this.state.nameFinal);
+    } else if (id === "s14preN") {
+      var name = this.state.nameFinal;
+      var lastLetter = name[name.length - 1];
+      var combined = "";
+      for (var i = 0; i < 10; i++) {
+        combined = combined.concat(lastLetter);
+      }
+      dialogueFinal = dialogueTemp.replace(
+        "Quinnnnnnnnnnnnnnn",
+        name + combined
+      );
+    } else {
+      dialogueFinal = dialogueTemp;
+    }
+
+    return dialogueFinal;
   }
 
   getSummaryText(id) {
     return summaryText.find(x => x.id === id).text;
   }
 
+  samDialogueDelay(entry) {
+    setTimeout(
+      function() {
+        this.getSamDialogue(entry);
+      }.bind(this),
+      3000
+    );
+  }
+
+  dialogueDelay(entry) {
+    // setTimeout(
+    // function() {
+    this.changeDialogueState(entry);
+    // }.bind(this),
+    // 0
+    // );
+  }
+
   toggleResponse1() {
-    this.changeDialogueState(responseID1);
+    this.dialogueDelay(responseID1);
+    // this.changeDialogueState(responseID1);
   }
   toggleResponse2() {
-    this.changeDialogueState(responseID2);
+    this.dialogueDelay(responseID2);
+    // this.changeDialogueState(responseID2);
   }
   toggleResponse3() {
-    this.changeDialogueState(responseID3);
+    this.dialogueDelay(responseID3);
+    // this.changeDialogueState(responseID3);
+  }
+
+  resetResponses() {
+    this.setState({
+      button1Disable: false,
+      button2Disable: false,
+      button3Disable: false
+    });
+  }
+
+  delayDialogue() {
+    var time = Math.random(5);
+    var dialogue = document.querySelector(".Sam-dialogue");
+    dialogue.style.setProperty("--animation-time", time + "s");
   }
 
   populateResponses(a, b, c) {
-    var random = this.getRandomInt(3);
+    this.resetResponses();
 
-    if (random === 0) {
+    if (a === " " || b === " " || c === " ") {
       responseID1 = a;
       responseID2 = b;
       responseID3 = c;
-    } else if (random === 1) {
-      responseID1 = c;
-      responseID2 = a;
-      responseID3 = b;
-    } else if (random === 2) {
-      responseID1 = b;
-      responseID2 = c;
-      responseID3 = a;
+      if (a === " ") {
+        this.setState({
+          button1Disable: true
+        });
+      }
+      if (b === " ") {
+        this.setState({
+          button2Disable: true
+        });
+      }
+      if (c === " ") {
+        this.setState({
+          button3Disable: true
+        });
+      }
+    } else {
+      var random = this.getRandomInt(3);
+
+      if (random === 0) {
+        responseID1 = a;
+        responseID2 = b;
+        responseID3 = c;
+      } else if (random === 1) {
+        responseID1 = c;
+        responseID2 = a;
+        responseID3 = b;
+      } else if (random === 2) {
+        responseID1 = b;
+        responseID2 = c;
+        responseID3 = a;
+      }
     }
 
     exchange++;
   }
 
   retryMonth = currMonth => {
+    this.resetResponses();
+
     if (currMonth === 0) {
       this.setState({
         hideExchange1: true,
@@ -200,6 +345,7 @@ class MainDialogue extends Component {
       exchange = 7;
       month = 6;
       starCount = 1;
+      heartCount = 3;
 
       responseID1 = "u7a";
       responseID2 = "u7b";
@@ -269,6 +415,8 @@ class MainDialogue extends Component {
   };
 
   continueMonth = currMonth => {
+    this.resetResponses();
+
     if (currMonth === 0) {
       this.setState({
         hideSummary0: true,
@@ -341,6 +489,18 @@ class MainDialogue extends Component {
         });
       }
     }
+  }
+
+  scrollToBottom = () => {
+    this.messagesEnd.scrollIntoView({ behavior: "smooth" });
+  };
+
+  componentDidMount() {
+    this.scrollToBottom();
+  }
+
+  componentDidUpdate() {
+    this.scrollToBottom();
   }
 
   changeDialogueState(entry) {
@@ -536,7 +696,7 @@ class MainDialogue extends Component {
           hideExchange6: false,
           exchange6: "u6a"
         });
-        this.populateResponses(" ", "gn", " ");
+        this.populateResponses("gn", " ", " ");
       }
 
       // *************************************************//
@@ -651,6 +811,7 @@ class MainDialogue extends Component {
           hideExchange12: false,
           exchange12: "u12a"
         });
+        starCount++;
         this.populateResponses("u13a", "u13b", " ");
       } else if (entry === "u12b") {
         this.setState({
@@ -942,6 +1103,7 @@ class MainDialogue extends Component {
           hideExchange20: false,
           exchange20: "u20b"
         });
+        starCount = 0;
         this.populateResponses("u21d", " ", " ");
       } else if (entry === "u20c") {
         this.setState({
@@ -1021,14 +1183,14 @@ class MainDialogue extends Component {
           hideExchange22: false,
           exchange22: "u22goodA"
         });
-        starCount++;
+        starCount = 3;
         this.populateResponses(":)", " ", " ");
       } else if (entry === "u22goodB") {
         this.setState({
           hideExchange22: false,
           exchange22: "u22goodB"
         });
-        starCount++;
+        starCount = 3;
         this.populateResponses(":)", " ", " ");
       }
     } else if (exchange === 23) {
@@ -1050,9 +1212,12 @@ class MainDialogue extends Component {
     return (
       <div>
         <div className="Dialogue-main">
+          {this.state.showIntro && (
+            <Intro toggleIntro={this.toggleIntro} setName={this.setName} />
+          )}
           <div className="Side-bar-container">
-            <HeartBar heartCount={heartCount} />
-            <StarBar starCount={starCount} />
+            {/* <HeartBar heartCount={heartCount} /> */}
+            <StarBar starCount={starCount} month={month} />
           </div>
           <div className="Box">
             <div className="Box-content" id="Dialogue">
@@ -1062,15 +1227,12 @@ class MainDialogue extends Component {
               <div className="Date-bar" id="Month0">
                 <p>Month 0</p>
               </div>
-
-              <SamDialogue dialogue="Hey Quinn!" />
-
+              <SamDialogue dialogue={"Hey " + this.state.nameFinal} />,
               {!this.state.hideExchange1 && (
                 <UserDialogue
                   dialogue={this.getUserDialogue(this.state.exchange1)}
                 />
               )}
-
               {!this.state.hideExchange1 && this.state.exchange1 === "u1a" && (
                 <SamDialogue dialogue={this.getSamDialogue("s1a")} />
               )}
@@ -1080,13 +1242,11 @@ class MainDialogue extends Component {
               {!this.state.hideExchange1 && this.state.exchange1 === "u1c" && (
                 <SamDialogue dialogue={this.getSamDialogue("s1c")} />
               )}
-
               {!this.state.hideExchange2 && (
                 <UserDialogue
                   dialogue={this.getUserDialogue(this.state.exchange2)}
                 />
               )}
-
               {!this.state.hideExchange2 && this.state.exchange2 === "u2a" && (
                 <SamDialogue dialogue={this.getSamDialogue("s2a")} />
               )}
@@ -1099,13 +1259,11 @@ class MainDialogue extends Component {
               {!this.state.hideExchange2 && this.state.exchange2 === "u2c" && (
                 <SamDialogue dialogue={this.getSamDialogue("s2c")} />
               )}
-
               {!this.state.hideExchange3 && (
                 <UserDialogue
                   dialogue={this.getUserDialogue(this.state.exchange3)}
                 />
               )}
-
               {!this.state.hideExchange3 && this.state.exchange3 === "u3a" && (
                 <SamDialogue dialogue={this.getSamDialogue("s3a")} />
               )}
@@ -1133,13 +1291,11 @@ class MainDialogue extends Component {
               {!this.state.hideExchange3 && this.state.exchange3 === "u3h" && (
                 <SamDialogue dialogue={this.getSamDialogue("s3h")} />
               )}
-
               {!this.state.hideExchange4 && (
                 <UserDialogue
                   dialogue={this.getUserDialogue(this.state.exchange4)}
                 />
               )}
-
               {!this.state.hideExchange4 && this.state.exchange4 === "u4a" && (
                 <SamDialogue dialogue={this.getSamDialogue("s4a")} />
               )}
@@ -1182,13 +1338,11 @@ class MainDialogue extends Component {
               {!this.state.hideExchange4 && (
                 <SamDialogue dialogue={this.getSamDialogue("s4all")} />
               )}
-
               {!this.state.hideExchange5 && (
                 <UserDialogue
                   dialogue={this.getUserDialogue(this.state.exchange5)}
                 />
               )}
-
               {!this.state.hideExchange5 && this.state.exchange5 === "u5a" && (
                 <SamDialogue dialogue={this.getSamDialogue("s5a")} />
               )}
@@ -1198,134 +1352,112 @@ class MainDialogue extends Component {
               {!this.state.hideExchange5 && this.state.exchange5 === "u5c" && (
                 <SamDialogue dialogue={this.getSamDialogue("s5c")} />
               )}
-
               {!this.state.hideExchange6 && (
                 <UserDialogue
                   dialogue={this.getUserDialogue(this.state.exchange6)}
                 />
               )}
-
               {!this.state.hideExchange6 && this.state.exchange6 === "u6a" && (
                 <SamDialogue dialogue={this.getSamDialogue("s6a")} />
               )}
               {!this.state.hideExchange6 && this.state.exchange6 === "u6a" && (
                 <SamDialogue dialogue={this.getSamDialogue("s6b")} />
               )}
-
               {!this.state.hideSummary0 && (
                 <Summary
                   summary={this.getSummaryText("m0-default")}
+                  intermission={this.getSummaryText("m0-intermission")}
                   retryMonth={this.retryMonth}
                   continueMonth={this.continueMonth}
                   month={month}
                   starCount={starCount}
                 />
               )}
-
               {/* ********************************************************************************** */}
               {/* ***********************************  MONTH 6 ************************************* */}
               {/* ********************************************************************************** */}
-
               {this.state.shownSummary0 && this.getDateBar("Month 6")}
-
+              {this.state.shownSummary0 && (
+                <SamDialogue dialogue={"Helloooo..."} />
+              )}
               {!this.state.hideExchange7 && (
                 <UserDialogue
                   dialogue={this.getUserDialogue(this.state.exchange7)}
                 />
               )}
-
               {!this.state.hideExchange7 && (
                 <SamDialogue dialogue={this.getSamDialogue("s7a")} />
               )}
-
               {!this.state.hideExchange8 && (
                 <UserDialogue
                   dialogue={this.getUserDialogue(this.state.exchange8)}
                 />
               )}
-
               {!this.state.hideExchange8 && (
                 <SamDialogue dialogue={this.getSamDialogue("s8a")} />
               )}
-
               {!this.state.hideExchange9 && (
                 <UserDialogue
                   dialogue={this.getUserDialogue(this.state.exchange9)}
                 />
               )}
-
               {!this.state.hideExchange9 && this.state.exchange9 === "u9a" && (
                 <SamDialogue dialogue={this.getSamDialogue("s9a")} />
               )}
-
               {!this.state.hideExchange9 && this.state.exchange9 === "u9b" && (
                 <SamDialogue dialogue={this.getSamDialogue("s9b")} />
               )}
-
               {!this.state.hideExchange9 && this.state.exchange9 === "u9c" && (
                 <SamDialogue dialogue={this.getSamDialogue("s9c")} />
               )}
-
               {!this.state.hideExchange10 && (
                 <UserDialogue
                   dialogue={this.getUserDialogue(this.state.exchange10)}
                 />
               )}
-
               {!this.state.hideExchange10 &&
                 this.state.exchange10 === "u10a" && (
                   <SamDialogue dialogue={this.getSamDialogue("s10a")} />
                 )}
-
               {!this.state.hideExchange10 &&
                 this.state.exchange10 === "u10b" && (
                   <SamDialogue dialogue={this.getSamDialogue("s10b")} />
                 )}
-
               {!this.state.hideExchange10 && (
                 <SamDialogue dialogue={this.getSamDialogue("s10a2")} />
               )}
-
               {!this.state.hideExchange10 && (
                 <SamDialogue dialogue={this.getSamDialogue("s10a3")} />
               )}
-
               {!this.state.hideExchange10 && (
                 <SamDialogue dialogue={this.getSamDialogue("s10a4")} />
               )}
-
               {!this.state.hideExchange11 && (
                 <UserDialogue
                   dialogue={this.getUserDialogue(this.state.exchange11)}
                 />
               )}
-
               {!this.state.hideExchange11 &&
                 this.state.exchange11 === "u11a" && (
                   <SamDialogue dialogue={this.getSamDialogue("s11a")} />
                 )}
-
               {!this.state.hideExchange11 &&
                 this.state.exchange11 === "u11a" && (
                   <SamDialogue dialogue={this.getSamDialogue("s11a2")} />
                 )}
-
               {!this.state.hideExchange11 &&
                 this.state.exchange11 === "u11b" && (
                   <SamDialogue dialogue={this.getSamDialogue("s11b")} />
                 )}
-
               {!this.state.hideExchange11 &&
                 this.state.exchange11 === "u11b" && (
                   <SamDialogue dialogue={this.getSamDialogue("s11b2")} />
                 )}
-
               {!this.state.hideExchange12 && (
                 <UserDialogue
                   dialogue={this.getUserDialogue(this.state.exchange12)}
                 />
               )}
-
               {!this.state.hideExchange12 &&
                 this.state.exchange12 === "u12a" && (
                   <SamDialogue dialogue={this.getSamDialogue("s12a")} />
@@ -1350,7 +1482,6 @@ class MainDialogue extends Component {
                 this.state.exchange12 === "u12c" && (
                   <SamDialogue dialogue={this.getSamDialogue("s12a")} />
                 )}
-
               {!this.state.hideExchange13 && (
                 <UserDialogue
                   dialogue={this.getUserDialogue(this.state.exchange13)}
@@ -1395,17 +1526,16 @@ class MainDialogue extends Component {
               {!this.state.hideExchange13 && (
                 <SamDialogue dialogue={this.getSamDialogue("s13all")} />
               )}
-
               {!this.state.hideSummary6 && (
                 <Summary
                   summary={this.getSummaryText(this.state.summary6)}
+                  intermission={this.getSummaryText("m6-intermission")}
                   retryMonth={this.retryMonth}
                   continueMonth={this.continueMonth}
                   month={month}
                   starCount={starCount}
                 />
               )}
-
               {/* ********************************************************************************** */}
               {/* ********************************  MONTH 12  ************************************** */}
               {/* ********************************************************************************** */}
@@ -1530,13 +1660,13 @@ class MainDialogue extends Component {
               {!this.state.hideSummary12 && (
                 <Summary
                   summary={this.getSummaryText(this.state.summary12)}
+                  intermission={this.getSummaryText("m12-intermission")}
                   retryMonth={this.retryMonth}
                   continueMonth={this.continueMonth}
                   month={month}
                   starCount={starCount}
                 />
               )}
-
               {/* ********************************************************************************** */}
               {/* ********************************  MONTH 18  ************************************** */}
               {/* ********************************************************************************** */}
@@ -1568,10 +1698,9 @@ class MainDialogue extends Component {
                 this.state.exchange19 === "u19b" && (
                   <SamDialogue dialogue={this.getSamDialogue("s19b")} />
                 )}
-              {!this.state.hideExchange19 &&
-                this.state.exchange19 === "u19b" && (
-                  <SamDialogue dialogue={this.getSamDialogue("s19b2")} />
-                )}
+              {!this.state.hideExchange19 && (
+                <SamDialogue dialogue={this.getSamDialogue("s19b2")} />
+              )}
               {!this.state.hideExchange20 && (
                 <UserDialogue
                   dialogue={this.getUserDialogue(this.state.exchange20)}
@@ -1621,13 +1750,13 @@ class MainDialogue extends Component {
               {!this.state.hideSummary18 && (
                 <Summary
                   summary={this.getSummaryText(this.state.summary18)}
+                  intermission={this.getSummaryText("m18-intermission")}
                   retryMonth={this.retryMonth}
                   continueMonth={this.continueMonth}
                   month={month}
                   starCount={starCount}
                 />
               )}
-
               {/* ********************************************************************************** */}
               {/* ********************************  MONTH 24  ************************************** */}
               {/* ********************************************************************************** */}
@@ -1675,12 +1804,19 @@ class MainDialogue extends Component {
               {!this.state.hideSummary24 && (
                 <Summary
                   summary={this.getSummaryText(this.state.summary24)}
+                  intermission={""}
                   retryMonth={this.retryMonth}
                   continueMonth={this.continueMonth}
                   month={month}
                   starCount={starCount}
                 />
               )}
+              <div
+                style={{ float: "left", clear: "both" }}
+                ref={el => {
+                  this.messagesEnd = el;
+                }}
+              />
             </div>
           </div>
         </div>
@@ -1703,6 +1839,7 @@ class MainDialogue extends Component {
           <button
             className="Response-button"
             id="Response1"
+            disabled={this.state.button1Disable}
             onClick={this.toggleResponse1.bind(this)}
           >
             {userDialogue.find(x => x.id === responseID1).text}
@@ -1710,6 +1847,7 @@ class MainDialogue extends Component {
           <button
             className="Response-button"
             id="Response2"
+            disabled={this.state.button2Disable}
             onClick={this.toggleResponse2.bind(this)}
           >
             {userDialogue.find(x => x.id === responseID2).text}
@@ -1717,6 +1855,7 @@ class MainDialogue extends Component {
           <button
             className="Response-button"
             id="Response3"
+            disabled={this.state.button3Disable}
             onClick={this.toggleResponse3.bind(this)}
           >
             {userDialogue.find(x => x.id === responseID3).text}

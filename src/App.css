@@ -1,5 +1,9 @@
 .App {
   text-align: center;
+  font-family: 'Roboto';
+  font-weight: 400;
+  letter-spacing: 0.05vh;
+  color: #383838;
 }
 
 .App-logo {
@@ -10,7 +14,8 @@
 .App-header {
   min-height: 100vh;
   /* background-color: #FDD8D4; */
-  background-color: #DCDCDC;
+  /* background-color: #DCDCDC; */
+  background-color: #FFFFFF;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -25,8 +30,10 @@
   border-top: 0.25vh solid #D3D3D3;
   border-bottom: 0.25vh solid #D3D3D3;
   margin: 5vh;
-  margin-bottom: 3vh;
-  padding: -1vh;
+  /* margin-bottom: 3vh; */
+  /* padding: -1vh; */ 
+  text-align: center;
+  font-size: 2vh;
 }
 
 #Month0 {
@@ -55,7 +62,7 @@
   border-radius: 0px 25px 25px 0px;
   display: flex;
   flex-direction: column;
-  
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .Box-content {
@@ -71,9 +78,13 @@
   justify-content: flex-start;    
 }
 
+:root {
+  --animation-time: 1.5s;
+}
+
 .Sam-dialogue {
   /* background-color: #FFAAAA; */
-  background-color: #DCDCDC;
+  background-color: #F0F0F0;
   max-width: 70vh;
   text-align: left;
   margin-left: 5vh;
@@ -82,6 +93,29 @@
   border-radius: 1.5vh;
   font-size: 2vmin;     
   color: #OEOEOE;
+
+  animation-name: animation-dialogue;
+  animation-fill-mode: forwards;
+  animation-duration: 0.4s;
+  animation-delay: var(--animation-time);
+  
+  visibility: hidden;
+  /* display: none; */
+}
+
+@keyframes animation-dialogue {
+  0% {
+    opacity: 0;
+    margin-top: 2vh;
+    
+  }
+  100% {
+    visibility: visible;
+    display: block;
+    opacity: 1;
+    margin-top: 0vh;
+    
+  }
 }
 
 .User-div {
@@ -92,8 +126,8 @@
 }
 
 .User-dialogue {
-  /* background-color: #AFDDE9; */
-  background-color: #BEBEBE;
+  background-color: #AFDDE9;
+  /* background-color: #BEBEBE; */
   max-width: 70vh;
   text-align: left;
   margin-right: 5vh;
@@ -102,6 +136,14 @@
   border-radius: 1.5vh;
   font-size: 2vmin;     
   color: #OEOEOE;
+
+  animation-name: animation-dialogue;
+  animation-fill-mode: forwards;
+  animation-duration: 0.4s;
+  animation-delay: 0.2s;
+  
+  visibility: hidden;
+  /* display: none; */
 }
 
 
@@ -129,11 +171,11 @@
   bottom: 9.5vh;
   min-width: 12vh;
   font-size: 2vmin;   
+  font-weight: 400;
   color: white;
 }
 
 .Response-row {
-  
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -143,21 +185,30 @@
 
 .Response-button {
   background-color: white;
+
   width: 45vh;
   height: 10vh;
   margin-right: 2.5vh;
+  
   text-align: center;
+  font-family: 'Roboto';
+  font-size: 1.75vmin;
+  color: #383838;
+  
   outline: none;
   /* border: 0.5vh solid #AFDDE9; */
-  border: 0.5vh solid #BEBEBE;
+  /* border: 0.5vh solid #BEBEBE; */
+  border: none;
   border-radius: 2vh;
+  
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   -webkit-transition-duration: 0.4s; /* Safari */
   transition-duration: 0.4s;
 }
 
 .Response-button:hover {
-  /* background-color: #AFDDE9; */
-  background-color: #BEBEBE;
+  background-color: #AFDDE9;
+  /* background-color: #BEBEBE; */
 }
 
 .Response-button:disabled {
@@ -171,26 +222,42 @@
   margin-top: 5vh;
 }
 
-.Side-bar {
+/* .Side-bar {
   min-height: 34.5vh;
-  min-width: 20vh;  
+  min-width: 19vh;
+  margin-right: 1vh;  
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;    
   border-radius: 25px 0px 0px 25px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}  */
+
+.Side-bar {
+  min-height: 70vh;
+  min-width: 19vh;
+  margin-right: 1vh;  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;    
+  border-radius: 25px 0px 0px 25px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 } 
 
 #Hearts-bar {
-  /* background-color: #FFAAAA; */  
-  background-color: #C8C8C8;  
+  /* background-color: #FFAAAA;   */
+  /* background-color: #C8C8C8;   */
+  background-color: #FFFFFF;
   margin-bottom: 1vh;
 
 }
 
 #Stars-bar {
   /* background-color: #FFEEAA; */
-  background-color: #C8C8C8;   
+  /* background-color: #C8C8C8;    */
+  background-color: #FFFFFF;
 }
 
 .Side-icon {
@@ -235,7 +302,7 @@
   justify-content: flex-start;
     
   background-color: #FFFFFF;
-  min-height: 70vh;
+  min-height: 75vh;
   min-width: 120vh;
   max-width: 140vh;
   padding-top: 2.5vh;
@@ -271,8 +338,8 @@
 }
 
 .Summary-Num {
-  margin-top: -3vh;
-  margin-bottom: -3vh;
+  margin-top: -2vh;
+  margin-bottom: -2vh;
   font-size: 9vh;
   font-weight: 600;
 }
@@ -285,6 +352,8 @@
 .Summary-Text {
   margin-left: 10vh;
   margin-right: 10vh;
+  font-size: 2vmin;
+  line-height: 3.5vh;
 }
 
 .Summary-Button {
@@ -316,11 +385,165 @@
   cursor: not-allowed;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* ********************************************** */
+.Intro {
+  position: fixed; /* Sit on top of the page content */
+  top: 0; 
+  left: 0;
+  right: 0;
+  bottom: 0;
+    
+  display: flex; /* Hidden by default */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+    
+  min-width: 100vh; /* Full width (cover the whole page) */
+  min-height: 100vh; /* Full height (cover the whole page) */
+  
+  background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+  /* cursor: pointer; /* Add a pointer on hover */
 }
+
+.Intro-Overlay-Box {
+  display: flex; /* Hidden by default */
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+    
+  background-color: #FFFFFF;
+  min-height: 75vh;
+  width: 140vh;
+  padding-top: 2.5vh;
+  padding-bottom: 5vh;
+  padding-left: 5vh;
+  padding-right: 5vh;
+  margin-top: -1vh;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+}
+
+.Intro-BodyDiv {
+  max-width: 105vh;
+}
+
+.Intro-TitleText {
+  font-size: 6vh;
+  margin-top: 10vh;
+  margin-bottom: 3vh;
+
+}
+
+#SubHeaderText{
+  font-size: 4vh;
+  margin-top: 2.5vh;
+  margin-bottom: 5vh;
+}
+
+.Intro-SubTitleText {
+  font-size: 2vh;
+  margin-bottom: 6vh;
+  color:#696969;
+}
+
+.Intro-BodyText {
+  font-size: 2vh;
+}
+
+.Intro-InputDiv {
+  margin: 2vh;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  align-content: flex-start;
+}
+
+.Intro-Input {
+  width: 75vh;
+  height: 4vh;
+  font-size: 3vh;
+  padding: 1vh;
+  padding-left: 3vh;
+  border-radius: 2vh;
+  border: none;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.05), 0 6px 15px 0 rgba(0, 0, 0, 0.15);
+}
+
+.Intro-InputLabel {
+  font-size: 2.5vh;
+  text-align: start;
+  margin-bottom: 1vh;
+  margin-left: 1vh;
+  color: #696969;
+}
+
+.Intro-Button {
+  background-color: white;
+
+  width: 30vh;
+  height: 8vh;
+  margin-left: 1.5vh;
+  margin-right: 1.5vh;
+  margin-top: 4vh;
+  margin-bottom: 2vh;
+  
+  text-align: center;
+  font-size: 2vh;
+  outline: none;
+  border: none;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  /* border: 0.5vh solid #AFDDE9; */
+  /* border: 0.3vh solid #BEBEBE; */
+  border-radius: 1.25vh;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;    
+}
+
+.Intro-Button:hover {
+  background-color: #AFDDE9;
+  /* background-color: #BEBEBE; */
+}
+
+.Intro-Button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+#Avatar{
+  width: 12.5vh;
+  height: 12vh;
+  padding-right: 1vh;
+  opacity: 0.25;
+}
+
+#AvatarText{
+  color: lightgrey;
+}
+
+#SamIntroDiv{
+  width: 120vh;
+  text-align: left;
+}
+
+#SamIntroHeader {
+  margin-left: 0vh;
+  text-align: center;
+}
+
+.dot {
+  height: 2.5vh;
+  width: 2.5vh;
+  margin: 2vh;
+  margin-top: 3vh;
+  background-color: lightgray;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+#currDot {
+  background-color: #AFDDE9;
+}
+
+

@@ -12,11 +12,11 @@ export const userDialogue = [
 
   {
     id: "u2a",
-    text: "Yeah idunno. Amanda made me get one, so here we are."
+    text: "Yeah idunno. My friend Amanda made me get one, so here we are."
   },
   {
     id: "u2b",
-    text: "I thought that's what all the cool kids are doing these days o:"
+    text: "I thought that's what all the cool kids are doing these days :o"
   },
   { id: "u2c", text: "Just wanted to be more social, y'know?" },
 
@@ -50,7 +50,7 @@ export const userDialogue = [
   {
     id: "u4d",
     text:
-      "It'll be worth it once she's done. It's just hard to deal with in the meantime..."
+      "It'll be worth it once she's done. It just sounds terrible to deal with in the meantime..."
   },
   { id: "u4d2", text: "Yeah..." },
   {
@@ -118,7 +118,8 @@ export const userDialogue = [
   },
   {
     id: "u10b",
-    text: "If you don't want to talk then that's fine. I don't push you."
+    text:
+      "If you don't want to talk then that's fine. I don't want to push you."
   },
   { id: "u10c", text: " " },
 
@@ -132,7 +133,11 @@ export const userDialogue = [
   },
   { id: "u11c", text: " " },
 
-  { id: "u12a", text: "Isn't there anything else that you can do?" },
+  {
+    id: "u12a",
+    text:
+      "That sounds really difficult to deal with. Don't sell yourself short though, I'm sure you're doing fine."
+  },
   { id: "u12b", text: "Have you tried looking for another job?" },
   {
     id: "u12c",
@@ -239,7 +244,7 @@ export const userDialogue = [
   {
     id: "u19b",
     text:
-      "If you don't mind me asking though... have you considered professional help? It sounds like you have depression."
+      "If you don't mind me asking though... have you considered professional help? It sounds like you've been struggling for a while."
   },
 
   {

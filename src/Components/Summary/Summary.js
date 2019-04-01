@@ -33,9 +33,12 @@ class Summary extends Component {
 
   getIcons(month, starCount) {
     if (month === 0) {
-      leftIcon = heartOn;
-      middleIcon = heartOn;
-      rightIcon = heartOn;
+      // leftIcon = heartOn;
+      // middleIcon = heartOn;
+      // rightIcon = heartOn;
+      leftIcon = starOn;
+      middleIcon = starOn;
+      rightIcon = starOn;
     } else {
       if (starCount === 0) {
         leftIcon = starOff;
@@ -58,12 +61,15 @@ class Summary extends Component {
         state = "Complete!";
         disableContinue = false;
       }
-      if (starCount === 3) {
+      if (starCount >= 3) {
         leftIcon = starOn;
         middleIcon = starOn;
         rightIcon = starOn;
         state = "Complete!";
         disableContinue = false;
+      }
+      if (month === 24) {
+        disableContinue = true;
       }
     }
   }
@@ -97,6 +103,7 @@ class Summary extends Component {
           <p className="Summary-Num">{this.props.month}</p>
           <p className="Summary-Complete">{state}</p>
           <p className="Summary-Text">{this.props.summary}</p>
+          <p className="Summary-Text">{this.props.intermission}</p>
           <div>
             <button
               className="Summary-Button"
